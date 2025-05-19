@@ -118,7 +118,6 @@
         <DCCReference Include="Source\WindowsVCL\CustomComponents\CustomComponentPanelClass.pas"/>
         <DCCReference Include="Source\WindowsVCL\CustomComponents\CustomComponentRegistrationUnit.pas"/>
         <DCCReference Include="Source\WindowsVCL\CustomComponents\CustomStringGridClass.pas"/>
-        <DCCReference Include="Source\WindowsVCL\CustomComponents\Drawer2DUnits\Drawer2DPaintBoxClass.pas"/>
         <DCCReference Include="Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DComponent.pas"/>
         <DCCReference Include="Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DFrame.pas">
             <Form>CustomGraphic2D</Form>

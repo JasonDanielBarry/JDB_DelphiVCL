@@ -13,7 +13,7 @@ interface
         GeometryTypes, GeomBox,
         GraphicsListClass,
         Graphic2DTypes,
-        Drawer2DPaintBoxClass
+        GraphicDrawer2DPaintBoxClass
         ;
 
     type

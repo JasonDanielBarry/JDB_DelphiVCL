@@ -40,7 +40,6 @@ contains
   CustomComponentPanelClass in 'Source\WindowsVCL\CustomComponents\CustomComponentPanelClass.pas',
   CustomComponentRegistrationUnit in 'Source\WindowsVCL\CustomComponents\CustomComponentRegistrationUnit.pas',
   CustomStringGridClass in 'Source\WindowsVCL\CustomComponents\CustomStringGridClass.pas',
-  Drawer2DPaintBoxClass in 'Source\WindowsVCL\CustomComponents\Drawer2DUnits\Drawer2DPaintBoxClass.pas',
   Graphic2DComponent in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DComponent.pas',
   Graphic2DFrame in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DFrame.pas' {CustomGraphic2D: TFrame},
   Graphic2DTypes in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DTypes.pas',

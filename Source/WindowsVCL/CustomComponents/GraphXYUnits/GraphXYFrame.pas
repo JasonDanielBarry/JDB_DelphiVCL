@@ -15,7 +15,7 @@ uses
     GraphicMousePointTrackerClass,
     GraphicGridClass,
     GraphPlotsListClass,
-    Drawer2DPaintBoxClass,
+    GraphicDrawer2DPaintBoxClass,
     GraphPlotTypes
     ;
 
