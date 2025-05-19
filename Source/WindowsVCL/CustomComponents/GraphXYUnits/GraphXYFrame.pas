@@ -15,7 +15,6 @@ uses
     GraphicMousePointTrackerClass,
     GraphicGridClass,
     GraphPlotsListClass,
-    Direct2DGraphicDrawingClass,
     Drawer2DPaintBoxClass,
     GraphXYTypes
     ;

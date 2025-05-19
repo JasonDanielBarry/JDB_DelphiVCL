@@ -1,0 +1,53 @@
+package JDB_DelphiVCL;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS ON}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vcl,
+  vclx,
+  Skia.Package.RTL;
+
+contains
+  GeneralComponentHelperMethods in 'Source\WindowsVCL\GeneralComponentHelperMethods.pas',
+  InputManagerClass in 'Source\WindowsVCL\InputManagerClass.pas',
+  PageControlHelperClass in 'Source\WindowsVCL\HelperClasses\PageControlHelperClass.pas',
+  CustomComponentPanelClass in 'Source\WindowsVCL\CustomComponents\CustomComponentPanelClass.pas',
+  CustomComponentRegistrationUnit in 'Source\WindowsVCL\CustomComponents\CustomComponentRegistrationUnit.pas',
+  CustomStringGridClass in 'Source\WindowsVCL\CustomComponents\CustomStringGridClass.pas',
+  Drawer2DPaintBoxClass in 'Source\WindowsVCL\CustomComponents\Drawer2DUnits\Drawer2DPaintBoxClass.pas',
+  Graphic2DComponent in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DComponent.pas',
+  Graphic2DFrame in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DFrame.pas' {CustomGraphic2D: TFrame},
+  Graphic2DTypes in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DTypes.pas',
+  GraphicsListClass in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\GraphicsListClass.pas',
+  GraphPlotsListClass in 'Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphPlotsListClass.pas',
+  GraphXYComponent in 'Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphXYComponent.pas',
+  GraphXYFrame in 'Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphXYFrame.pas' {CustomGraphXY: TFrame},
+  GraphXYTypes in 'Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphXYTypes.pas';
+
+end.

@@ -9,7 +9,7 @@ interface
         Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.ExtCtrls, Vcl.Themes,
 
         GraphicGridClass,
-        GraphicObjectListBaseClass, Direct2DGraphicDrawingClass
+        GraphicObjectListBaseClass, GraphicDrawerDirect2DClass
         ;
 
     type
@@ -22,7 +22,7 @@ interface
                     gridVisibilitySettings  : TGridVisibilitySettings;
                     graphicBackgroundColour : TColor;
                     currentGraphicBuffer    : TBitmap;
-                    D2DGraphicDrawer        : TDirect2DGraphicDrawer;
+                    D2DGraphicDrawer        : TGraphicDrawerDirect2D;
                 //events
                     procedure PaintBoxDrawer2DPaint(Sender: TObject);
                     procedure PaintBoxGraphicMouseEnter(Sender: TObject);
@@ -34,9 +34,7 @@ interface
                 //update buffer
                     procedure updateGraphicBuffer();
             protected
-                //drawing procedures
-                    procedure preDrawGraphic(const canvasIn : TDirect2DCanvas); virtual;
-                    procedure postDrawGraphic(const canvasIn : TDirect2DCanvas); virtual;
+                //
             public
                 //constructor
                     constructor create(AOwner : TComponent); override;
@@ -53,7 +51,7 @@ interface
                 //process windows messages
                     procedure processWindowsMessages(var messageInOut : TMessage; out graphicWasRedrawnOut : boolean);
                 //access graphic drawer
-                    property GraphicDrawer : TDirect2DGraphicDrawer read D2DGraphicDrawer;
+                    property GraphicDrawer : TGraphicDrawerDirect2D read D2DGraphicDrawer;
         end;
 
 implementation
@@ -111,50 +109,29 @@ implementation
         //update buffer
             procedure TPaintBox.updateGraphicBuffer();
                 var
-                    D2DBufferCanvas : TDirect2DCanvas;
+                    canvasWidth, canvasHeight : integer;
                 begin
-                    //create new D2D canvas for new drawing
-                        currentGraphicBuffer.SetSize( self.Width, self.Height );
+                    //cache the canvas dimensions
+                        canvasWidth     := self.Width;
+                        canvasHeight    := self.Height;
 
-                        D2DBufferCanvas := TDirect2DCanvas.Create( currentGraphicBuffer.Canvas, Rect(0, 0, self.Width, self.Height) );
+                    //set graphic buffer size
+                        currentGraphicBuffer.SetSize( canvasWidth, canvasHeight );
 
-                        D2DBufferCanvas.RenderTarget.SetAntialiasMode( TD2D1AntiAliasMode.D2D1_ANTIALIAS_MODE_PER_PRIMITIVE );
+                    //draw to the canvas
+                        D2DGraphicDrawer.drawAll(
+                                                    canvasWidth,
+                                                    canvasHeight,
+                                                    graphicBackgroundColour,
+                                                    currentGraphicBuffer.Canvas
+                                                );
 
-                        D2DBufferCanvas.RenderTarget.SetTextAntialiasMode( TD2D1TextAntiAliasMode.D2D1_TEXT_ANTIALIAS_MODE_CLEARTYPE );
-
-                    //draw to the D2D canvas
-                        D2DBufferCanvas.BeginDraw();
-
-                            //preDrawGraphic( D2DBufferCanvas );
-
-                            D2DGraphicDrawer.drawAll(
-                                                        self.Width,
-                                                        self.Height,
-                                                        graphicBackgroundColour,
-                                                        D2DBufferCanvas
-                                                    );
-
-                            //postDrawGraphic( D2DBufferCanvas );
-
-                        D2DBufferCanvas.EndDraw();
-
+                    //signify to wndProc() that the graphic must be redrawn
                         mustRedrawGraphic := True;
-
-                    //free the D2D canvas
-                        FreeAndNil( D2DBufferCanvas );
                 end;
 
     //protected
-        //drawing procedures
-            procedure TPaintBox.preDrawGraphic(const canvasIn : TDirect2DCanvas);
-                begin
-                    //nothing here
-                end;
-
-            procedure TPaintBox.postDrawGraphic(const canvasIn : TDirect2DCanvas);
-                begin
-                    //nothing here
-                end;
+        //
 
     //public
         //constructor
@@ -164,7 +141,7 @@ implementation
 
                     //create required classes
                         currentGraphicBuffer    := TBitmap.create();
-                        D2DGraphicDrawer        := TDirect2DGraphicDrawer.create();
+                        D2DGraphicDrawer        := TGraphicDrawerDirect2D.create();
 
                     //assign events
                         self.OnPaint        := PaintBoxDrawer2DPaint;

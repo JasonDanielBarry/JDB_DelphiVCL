@@ -11,7 +11,7 @@ interface
         Vcl.Buttons, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, vcl.Themes, Vcl.CheckLst,
         GeneralComponentHelperMethods,
         GeometryTypes, GeomBox,
-        GraphicsListClass, Direct2DGraphicDrawingClass,
+        GraphicsListClass,
         Graphic2DTypes,
         Drawer2DPaintBoxClass
         ;
