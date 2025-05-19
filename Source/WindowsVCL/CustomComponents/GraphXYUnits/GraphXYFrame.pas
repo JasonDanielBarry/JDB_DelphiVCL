@@ -16,7 +16,7 @@ uses
     GraphicGridClass,
     GraphPlotsListClass,
     Drawer2DPaintBoxClass,
-    GraphXYTypes
+    GraphPlotTypes
     ;
 
     type
@@ -26,12 +26,12 @@ uses
                 procedure FrameResize(Sender: TObject);
             private
                 type
-                    TGraphPlotMap = TOrderedDictionary< string, TGraphXYPlot >;
+                    TGraphPlotMap = TOrderedDictionary< string, TGraphPlotData >;
                 var
                     gridVisibilitySettings  : TGridVisibilitySettings;
                     graphPlotsMap           : TGraphPlotMap;
                 //add plots to list
-                    procedure addPlotToMap(const graphPlotIn : TGraphXYPlot);
+                    procedure addPlotToMap(const graphPlotIn : TGraphPlotData);
                 //update geometry event
                     procedure updateGraphPlots();
                 //set graph boundaries
@@ -73,7 +73,7 @@ implementation
 
     //private
         //add plots to list
-            procedure TCustomGraphXY.addPlotToMap(const graphPlotIn : TGraphXYPlot);
+            procedure TCustomGraphXY.addPlotToMap(const graphPlotIn : TGraphPlotData);
                 begin
                     graphPlotsMap.AddOrSetValue( graphPlotIn.plotName, graphPlotIn );
 
@@ -83,7 +83,7 @@ implementation
         //update geometry event
             procedure TCustomGraphXY.updateGraphPlots();
                 var
-                    tempGraphPlotItem   : TPair<string, TGraphXYPlot>;
+                    tempGraphPlotItem   : TPair<string, TGraphPlotData>;
                     mousePointTracker   : TGraphicMousePointTracker;
                     graphPlotsList      : TGraphPlotsList;
                 begin
@@ -177,7 +177,7 @@ implementation
                                                         const lineStyle     : TPenStyle;
                                                         const dataPointsIn  : TArray<TGeomPoint> );
                     var
-                        newGraphPlot : TGraphXYPlot;
+                        newGraphPlot : TGraphPlotData;
                     begin
                         newGraphPlot.plottingSize   := lineSizeIn;
                         newGraphPlot.plotName       := plotNameIn;
@@ -195,7 +195,7 @@ implementation
                                                         const pointColourIn : TColor;
                                                         const dataPointsIn  : TArray<TGeomPoint>);
                     var
-                        newGraphPlot : TGraphXYPlot;
+                        newGraphPlot : TGraphPlotData;
                     begin
                         newGraphPlot.plottingSize   := pointSizeIn;
                         newGraphPlot.plotName       := plotNameIn;

@@ -6,20 +6,20 @@ interface
         GraphicLinePlotClass,
         GraphicScatterPlotClass,
         GraphicMousePointTrackerClass,
-        GraphXYTypes,
+        GraphPlotTypes,
         GraphicObjectListBaseClass;
 
     type
         TGraphPlotsList = class(TGraphicObjectListBase)
             public
-                procedure addGraphPlot(const graphPlotIn : TGraphXYPlot);
+                procedure addGraphPlot(const graphPlotIn : TGraphPlotData);
                 procedure addMousePointTracker(const mousePointTrackerIn : TGraphicMousePointTracker);
         end;
 
 implementation
 
     //public
-        procedure TGraphPlotsList.addGraphPlot(const graphPlotIn : TGraphXYPlot);
+        procedure TGraphPlotsList.addGraphPlot(const graphPlotIn : TGraphPlotData);
             begin
                 case ( graphPlotIn.graphPlotType ) of
                     EGraphPlotType.gpLine:
