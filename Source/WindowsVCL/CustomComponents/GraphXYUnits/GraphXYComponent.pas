@@ -9,6 +9,7 @@ interface
 
         GeometryTypes,
         CustomComponentPanelClass,
+        GraphXYTypes,
         GraphXYFrame;
 
     type
@@ -18,19 +19,14 @@ interface
             public
                 constructor Create(AOwner: TComponent); override;
                 destructor Destroy(); override;
-                procedure replot();
-                //add plots
-                    //line plot
-                        procedure addLinePlot(  const plotNameIn    : string;
-                                                const dataPointsIn  : TArray<TGeomPoint>;
-                                                const lineSizeIn    : integer = 2;
-                                                const lineColourIn  : TColor = clWindowText;
-                                                const lineStyleIn   : TPenStyle = TPenStyle.psSolid );
-                    //scatter plot
-                        procedure addScatterPlot(   const plotNameIn    : string;
-                                                    const dataPointsIn  : TArray<TGeomPoint>;
-                                                    const pointSizeIn   : integer = 5;
-                                                    const pointColourIn : TColor = TColors.Royalblue    );
+                //update plots event
+                    function getOnUpdateGraphPlotsEvent() : TUpdateGraphPlotsEvent;
+                    procedure setOnUpdateGraphPlotsEvent(const OnUpdateGraphPlotsEventIn : TUpdateGraphPlotsEvent);
+                    procedure updateGraphPlots();
+                //replot graphs
+                    procedure replot();
+            published
+                property OnUpdateGraphPlots : TUpdateGraphPlotsEvent read getOnUpdateGraphPlotsEvent write setOnUpdateGraphPlotsEvent;
         end;
 
 implementation
@@ -53,30 +49,26 @@ implementation
                 inherited Destroy();
             end;
 
-        procedure TJDBGraphXY.replot();
-            begin
-                customGraphXY.replot();
-            end;
+        //update plots event
+            function TJDBGraphXY.getOnUpdateGraphPlotsEvent() : TUpdateGraphPlotsEvent;
+                begin
+                    result := customGraphXY.getOnUpdateGraphPlotsEvent();
+                end;
 
-        //add plots
-            //line plot
-                procedure TJDBGraphXY.addLinePlot(  const plotNameIn    : string;
-                                                    const dataPointsIn  : TArray<TGeomPoint>;
-                                                    const lineSizeIn    : integer = 2;
-                                                    const lineColourIn  : TColor = clWindowText;
-                                                    const lineStyleIn     : TPenStyle = TPenStyle.psSolid );
-                    begin
-                        customGraphXY.addLinePlot( lineSizeIn, plotNameIn, lineColourIn, lineStyleIn, dataPointsIn );
-                    end;
+            procedure TJDBGraphXY.setOnUpdateGraphPlotsEvent(const OnUpdateGraphPlotsEventIn : TUpdateGraphPlotsEvent);
+                begin
+                    customGraphXY.setOnUpdateGraphPlotsEvent( OnUpdateGraphPlotsEventIn );
+                end;
 
-            //scatter plot
-                procedure TJDBGraphXY.addScatterPlot(   const plotNameIn    : string;
-                                                        const dataPointsIn  : TArray<TGeomPoint>;
-                                                        const pointSizeIn   : integer = 5;
-                                                        const pointColourIn : TColor = TColors.Royalblue    );
-                    begin
-                        customGraphXY.addScatterPlot( pointSizeIn, plotNameIn, pointColourIn, dataPointsIn );
-                    end;
+            procedure TJDBGraphXY.updateGraphPlots();
+                begin
+                    customGraphXY.updateGraphPlots();
+                end;
 
+        //replot graphs
+            procedure TJDBGraphXY.replot();
+                begin
+                    customGraphXY.replot();
+                end;
 
 end.

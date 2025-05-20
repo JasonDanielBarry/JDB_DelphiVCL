@@ -7,7 +7,7 @@ uses
   System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, system.UITypes, system.Math,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, vcl.Styles, vcl.Themes,
   CustomComponentPanelClass, Graphic2DComponent, GraphicDrawingTypes,
-  GraphicsListClass, GraphicArrowClass,
+  Graphic2DListClass, GraphicArrowClass,
   GeometryTypes,
   GeomLineClass, GeomPolyLineClass, GeomPolygonClass, Vcl.StdCtrls;
 
@@ -18,17 +18,17 @@ type
     ComboBox1: TComboBox;
     LabelSelectGraphic: TLabel;
     procedure JDBGraphic2D1UpdateGraphics(  ASender             : TObject;
-                                            var AGraphicsList   : TGraphicsList );
+                                            var AGraphic2DList  : TGraphic2DList );
     procedure FormShow(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     //different graphics
-        procedure BlueBoxGraphic(var graphicsListInOut : TGraphicsList);
-        procedure XYGraphs(var graphicsListInOut : TGraphicsList);
-        procedure FinPlateGraphic(var graphicsListInOut : TGraphicsList);
-        procedure SoilNailWallGraphic(var graphicsListInOut : TGraphicsList);
-        procedure BendingBeamSection(var graphicsListInOut : TGraphicsList);
+        procedure BlueBoxGraphic(var graphicsListInOut : TGraphic2DList);
+        procedure XYGraphs(var graphicsListInOut : TGraphic2DList);
+        procedure FinPlateGraphic(var graphicsListInOut : TGraphic2DList);
+        procedure SoilNailWallGraphic(var graphicsListInOut : TGraphic2DList);
+        procedure BendingBeamSection(var graphicsListInOut : TGraphic2DList);
   public
     { Public declarations }
         constructor create(AOwner: TComponent); override;
@@ -42,7 +42,7 @@ implementation
 {$R *.dfm}
 
     //different graphics
-        procedure TForm1.BlueBoxGraphic(var graphicsListInOut : TGraphicsList);
+        procedure TForm1.BlueBoxGraphic(var graphicsListInOut : TGraphic2DList);
             var
                 i               : integer;
                 x, y            : double;
@@ -187,7 +187,7 @@ implementation
                     graphicsListInOut.addArc( 100, -125, 50, 50, 350, -10 );
             end;
 
-        procedure TForm1.XYGraphs(var graphicsListInOut : TGraphicsList);
+        procedure TForm1.XYGraphs(var graphicsListInOut : TGraphic2DList);
             const
                 X_MAX = 500;
                 Y_MAX = 250;
@@ -253,7 +253,7 @@ implementation
                     FreeAndNil( polyLine );
             end;
 
-    procedure TForm1.FinPlateGraphic(var graphicsListInOut : TGraphicsList);
+    procedure TForm1.FinPlateGraphic(var graphicsListInOut : TGraphic2DList);
         var
             i, j    : integer;
             line    : TGeomLine;
@@ -376,7 +376,7 @@ implementation
                         end;
         end;
 
-    procedure TForm1.SoilNailWallGraphic(var graphicsListInOut: TGraphicsList);
+    procedure TForm1.SoilNailWallGraphic(var graphicsListInOut: TGraphic2DList);
         var
             line    : TGeomLine;
             polygon : TGeomPolygon;
@@ -465,7 +465,7 @@ implementation
             FreeAndNil( polygon );
         end;
 
-    procedure TForm1.BendingBeamSection(var graphicsListInOut : TGraphicsList);
+    procedure TForm1.BendingBeamSection(var graphicsListInOut : TGraphic2DList);
         var
             line : TGeomLine;
         begin
@@ -530,19 +530,19 @@ implementation
         end;
 
     procedure TForm1.JDBGraphic2D1UpdateGraphics(   ASender             : TObject;
-                                                    var AGraphicsList   : TGraphicsList );
+                                                    var AGraphic2DList  : TGraphic2DList );
         begin
             case (ComboBox1.ItemIndex) of
                 0:
-                    BlueBoxGraphic( AGraphicsList );
+                    BlueBoxGraphic( AGraphic2DList );
                 1:
-                    XYGraphs( AGraphicsList );
+                    XYGraphs( AGraphic2DList );
                 2:
-                    FinPlateGraphic( AGraphicsList );
+                    FinPlateGraphic( AGraphic2DList );
                 3:
-                    SoilNailWallGraphic( AGraphicsList );
+                    SoilNailWallGraphic( AGraphic2DList );
                 4:
-                    BendingBeamSection( AGraphicsList );
+                    BendingBeamSection( AGraphic2DList );
             end;
         end;
 

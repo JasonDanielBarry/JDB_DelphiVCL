@@ -4,11 +4,11 @@ interface
 
     uses
         system.SysUtils,
-        GraphicsListClass
+        Graphic2DListClass
         ;
 
     type
-        TUpdateGraphicsEvent = procedure(ASender : TObject; var AGraphicsList : TGraphicsList) of object;
+        TUpdateGraphicsEvent = procedure(ASender : TObject; var AGraphic2DList : TGraphic2DList) of object;
 
 implementation
 

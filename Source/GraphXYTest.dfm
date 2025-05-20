@@ -26,5 +26,6 @@ object Form2: TForm2
     ShowCaption = False
     ShowHint = True
     TabOrder = 0
+    OnUpdateGraphPlots = JDBGraphXY1UpdateGraphPlots
   end
 end

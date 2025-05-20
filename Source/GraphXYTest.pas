@@ -8,11 +8,12 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
 
   GeometryTypes,
-  CustomComponentPanelClass, GraphXYComponent;
+  CustomComponentPanelClass, GraphXYTypes, GraphXYComponent;
 
 type
   TForm2 = class(TForm)
     JDBGraphXY1: TJDBGraphXY;
+    procedure JDBGraphXY1UpdateGraphPlots(ASender: TObject; var AGraphXYMap: TGraphXYMap);
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -28,6 +29,11 @@ implementation
 {$R *.dfm}
 
 procedure TForm2.FormCreate(Sender: TObject);
+begin
+    JDBGraphXY1.updateGraphPlots();
+end;
+
+procedure TForm2.JDBGraphXY1UpdateGraphPlots(ASender: TObject; var AGraphXYMap: TGraphXYMap);
 const
     POINT_COUNT : integer = 2000;
 var
@@ -68,11 +74,10 @@ begin
             arrPoints3[i].setPoint( x, y );
         end;
 
-    JDBGraphXY1.addLinePlot( 'Series 1', arrPoints1, 3 );
-    JDBGraphXY1.addLinePlot( 'Series 2', arrPoints2, 4, clBlue, TPenStyle.psDashDotDot );
-    JDBGraphXY1.addLinePlot( 'Series 3', arrPoints3, 5, clRed, TPenStyle.psDash );
-    JDBGraphXY1.addScatterPlot( 'Scatter 1', arrPoints4 );
+    AGraphXYMap.addLinePlot( 'Series 1', arrPoints1, 3 );
+    AGraphXYMap.addLinePlot( 'Series 2', arrPoints2, 4, clBlue, TPenStyle.psDashDotDot );
+    AGraphXYMap.addLinePlot( 'Series 3', arrPoints3, 5, clRed, TPenStyle.psDash );
+    AGraphXYMap.addScatterPlot( 'Scatter 1', arrPoints4 );
 end;
-
 
 end.

@@ -16,7 +16,7 @@ uses
     GraphicGridClass,
     GraphPlotsListClass,
     GraphicDrawer2DPaintBoxClass,
-    GraphPlotTypes
+    GraphXYTypes
     ;
 
     type
@@ -25,15 +25,10 @@ uses
             //events
                 procedure FrameResize(Sender: TObject);
             private
-                type
-                    TGraphPlotMap = TOrderedDictionary< string, TGraphPlotData >;
                 var
                     gridVisibilitySettings  : TGridVisibilitySettings;
-                    graphPlotsMap           : TGraphPlotMap;
-                //add plots to list
-                    procedure addPlotToMap(const graphPlotIn : TGraphPlotData);
-                //update geometry event
-                    procedure updateGraphPlots();
+                    graphPlotsMap           : TGraphXYMap;
+                    onUpdateGraphPlotsEvent : TUpdateGraphPlotsEvent;
                 //set graph boundaries
                     procedure setGraphBoundaries(const xMinIn, xMaxIn, yMinIn, yMaxIn : double);
             protected
@@ -44,21 +39,12 @@ uses
                     constructor create(AOwner : TComponent); override;
                 //destructor
                     destructor destroy(); override;
+                //update plots event
+                    function getOnUpdateGraphPlotsEvent() : TUpdateGraphPlotsEvent;
+                    procedure setOnUpdateGraphPlotsEvent(const OnUpdateGraphPlotsEventIn : TUpdateGraphPlotsEvent);
+                    procedure updateGraphPlots();
                 //replot graphs
                     procedure replot();
-                //add plots
-                    //line plot
-                        procedure addLinePlot(  const lineSizeIn    : integer;
-                                                const plotNameIn    : string;
-                                                const lineColourIn  : TColor;
-                                                const lineStyle     : TPenStyle;
-                                                const dataPointsIn  : TArray<TGeomPoint> );
-                    //scatter plot
-                        procedure addScatterPlot(   const pointSizeIn   : integer;
-                                                    const plotNameIn    : string;
-                                                    const pointColourIn : TColor;
-                                                    const dataPointsIn  : TArray<TGeomPoint> );
-
         end;
 
 implementation
@@ -72,42 +58,6 @@ implementation
             end;
 
     //private
-        //add plots to list
-            procedure TCustomGraphXY.addPlotToMap(const graphPlotIn : TGraphPlotData);
-                begin
-                    graphPlotsMap.AddOrSetValue( graphPlotIn.plotName, graphPlotIn );
-
-                    updateGraphPlots();
-                end;
-
-        //update geometry event
-            procedure TCustomGraphXY.updateGraphPlots();
-                var
-                    tempGraphPlotItem   : TPair<string, TGraphPlotData>;
-                    mousePointTracker   : TGraphicMousePointTracker;
-                    graphPlotsList      : TGraphPlotsList;
-                begin
-                    graphPlotsList := TGraphPlotsList.create();
-
-                    //grid
-                        PBGraphXY.setGridElementsVisiblity( gridVisibilitySettings );
-
-                    //graph plots
-                        for tempGraphPlotItem in graphPlotsMap do
-                            graphPlotsList.addGraphPlot( tempGraphPlotItem.Value );
-
-                    //mouse tracker
-                        mousePointTracker := TGraphicMousePointTracker.create( tempGraphPlotItem.Value );
-
-                        graphPlotsList.addMousePointTracker( mousePointTracker );
-
-                        PBGraphXY.GraphicDrawer.setRedrawOnMouseMoveActive( True );
-
-                    PBGraphXY.updateGraphics( self, graphPlotsList );
-
-                    FreeAndNil( graphPlotsList );
-                end;
-
         //set graph boundaries
             procedure TCustomGraphXY.setGraphBoundaries(const xMinIn, xMaxIn, yMinIn, yMaxIn : double);
                 var
@@ -147,7 +97,7 @@ implementation
                     PBGraphXY.setGridEnabled( True );
                     gridVisibilitySettings.setValues( True, True, True, True );
 
-                    graphPlotsMap := TGraphPlotMap.Create();
+                    graphPlotsMap := TGraphXYMap.Create();
 
                     PBGraphXY.GraphicDrawer.setDrawingSpaceRatioEnabled( False );
                     PBGraphXY.GraphicDrawer.setGeometryBorderPercentage( 0 );
@@ -158,9 +108,65 @@ implementation
         //destructor
             destructor TCustomGraphXY.destroy();
                 begin
+                    graphPlotsMap.clear();
                     FreeAndNil( graphPlotsMap );
 
                     inherited destroy();
+                end;
+
+        //update plots event
+            function TCustomGraphXY.getOnUpdateGraphPlotsEvent() : TUpdateGraphPlotsEvent;
+                begin
+                    result := onUpdateGraphPlotsEvent;
+                end;
+
+            procedure TCustomGraphXY.setOnUpdateGraphPlotsEvent(const OnUpdateGraphPlotsEventIn : TUpdateGraphPlotsEvent);
+                begin
+                    onUpdateGraphPlotsEvent := OnUpdateGraphPlotsEventIn;
+                end;
+
+            procedure TCustomGraphXY.updateGraphPlots();
+                var
+                    continuousTracking  : boolean;
+                    tempGraphPlotItem   : TPair<string, TGraphPlotData>;
+                    mousePointTracker   : TGraphicMousePointTracker;
+                    graphPlotsList      : TGraphPlotsList;
+                begin
+                    //clear map
+                        graphPlotsMap.Clear();
+
+                    //update the plots
+                        if NOT( Assigned( onUpdateGraphPlotsEvent ) ) then
+                            exit();
+
+                        onUpdateGraphPlotsEvent( self, graphPlotsMap );
+
+                    //create graphic object list
+                        graphPlotsList := TGraphPlotsList.create();
+
+                        //collect graph plots
+                            for tempGraphPlotItem in graphPlotsMap do
+                                graphPlotsList.addGraphPlot( tempGraphPlotItem.Value );
+
+                        //collect mouse point tracker
+                            continuousTracking := ( tempGraphPlotItem.Value.graphPlotType <> EGraphPlotType.gpScatter );
+
+                            mousePointTracker := TGraphicMousePointTracker.create( continuousTracking, tempGraphPlotItem.Value.arrDataPoints );
+
+                            graphPlotsList.addMousePointTracker( mousePointTracker );
+
+                            PBGraphXY.GraphicDrawer.setRedrawOnMouseMoveActive( True );
+
+                    //update the graphic drawers graphicsS
+                        PBGraphXY.updateGraphics( self, graphPlotsList );
+
+                    //free graphic object list memory
+                        FreeAndNil( graphPlotsList );
+
+                    //grid settings
+                        PBGraphXY.setGridElementsVisiblity( gridVisibilitySettings );
+
+                    replot();
                 end;
 
         //replot graphs
@@ -168,42 +174,5 @@ implementation
                 begin
                     PBGraphXY.postRedrawGraphicMessage( self );
                 end;
-
-        //add plots
-            //line plot
-                procedure TCustomGraphXY.addLinePlot(   const lineSizeIn    : integer;
-                                                        const plotNameIn    : string;
-                                                        const lineColourIn  : TColor;
-                                                        const lineStyle     : TPenStyle;
-                                                        const dataPointsIn  : TArray<TGeomPoint> );
-                    var
-                        newGraphPlot : TGraphPlotData;
-                    begin
-                        newGraphPlot.plottingSize   := lineSizeIn;
-                        newGraphPlot.plotName       := plotNameIn;
-                        newGraphPlot.graphPlotType  := EGraphPlotType.gpLine;
-                        newGraphPlot.plotColour     := lineColourIn;
-                        newGraphPlot.lineStyle      := lineStyle;
-                        TGeomPoint.copyPoints( dataPointsIn, newGraphPlot.arrDataPoints );
-
-                        addPlotToMap( newGraphPlot );
-                    end;
-
-            //scatter plot
-                procedure TCustomGraphXY.addScatterPlot(const pointSizeIn   : integer;
-                                                        const plotNameIn    : string;
-                                                        const pointColourIn : TColor;
-                                                        const dataPointsIn  : TArray<TGeomPoint>);
-                    var
-                        newGraphPlot : TGraphPlotData;
-                    begin
-                        newGraphPlot.plottingSize   := pointSizeIn;
-                        newGraphPlot.plotName       := plotNameIn;
-                        newGraphPlot.graphPlotType  := EGraphPlotType.gpScatter;
-                        newGraphPlot.plotColour     := pointColourIn;
-                        TGeomPoint.copyPoints( dataPointsIn, newGraphPlot.arrDataPoints );
-
-                        addPlotToMap( newGraphPlot );
-                    end;
 
 end.

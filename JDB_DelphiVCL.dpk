@@ -3,27 +3,27 @@ package JDB_DelphiVCL;
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
-{$ASSERTIONS OFF}
+{$ASSERTIONS ON}
 {$BOOLEVAL OFF}
 {$DEBUGINFO OFF}
 {$EXTENDEDSYNTAX ON}
-{$IMPORTEDDATA OFF}
-{$IOCHECKS OFF}
-{$LOCALSYMBOLS OFF}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
 {$LONGSTRINGS ON}
 {$OPENSTRINGS ON}
-{$OPTIMIZATION ON}
-{$OVERFLOWCHECKS OFF}
-{$RANGECHECKS OFF}
-{$REFERENCEINFO OFF}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS ON}
+{$REFERENCEINFO ON}
 {$SAFEDIVIDE OFF}
-{$STACKFRAMES OFF}
+{$STACKFRAMES ON}
 {$TYPEDADDRESS OFF}
 {$VARSTRINGCHECKS ON}
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
-{$DEFINE RELEASE}
+{$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
 {$IMPLICITBUILD ON}
 
@@ -43,7 +43,7 @@ contains
   Graphic2DComponent in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DComponent.pas',
   Graphic2DFrame in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DFrame.pas' {CustomGraphic2D: TFrame},
   Graphic2DTypes in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DTypes.pas',
-  GraphicsListClass in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\GraphicsListClass.pas',
+  Graphic2DListClass in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DListClass.pas',
   GraphPlotsListClass in 'Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphPlotsListClass.pas',
   GraphXYComponent in 'Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphXYComponent.pas',
   GraphXYFrame in 'Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphXYFrame.pas' {CustomGraphXY: TFrame},

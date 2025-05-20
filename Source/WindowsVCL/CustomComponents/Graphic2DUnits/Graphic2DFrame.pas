@@ -11,7 +11,7 @@ interface
         Vcl.Buttons, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, vcl.Themes, Vcl.CheckLst,
         GeneralComponentHelperMethods,
         GeometryTypes, GeomBox,
-        GraphicsListClass,
+        Graphic2DListClass,
         Graphic2DTypes,
         GraphicDrawer2DPaintBoxClass
         ;
@@ -36,7 +36,7 @@ interface
             ActionZoomOut: TAction;
             ActionZoomExtents: TAction;
             ActionRecentre: TAction;
-    ActionUpdateGraphics: TAction;
+            ActionUpdateGraphics: TAction;
             ActionPanLeft: TAction;
             ActionPanRight: TAction;
             ActionPanUp: TAction;
@@ -586,13 +586,13 @@ implementation
 
             procedure TCustomGraphic2D.updateGraphics();
                 var
-                    graphicsList : TGraphicsList;
+                    graphicsList : TGraphic2DList;
                 begin
                     if NOT( Assigned( onUpdateGraphicsEvent ) ) then
                         exit();
 
                     try
-                        graphicsList := TGraphicsList.create();
+                        graphicsList := TGraphic2DList.create();
 
                         onUpdateGraphicsEvent( self, graphicsList );
 
