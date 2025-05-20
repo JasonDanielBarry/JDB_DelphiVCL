@@ -101,7 +101,7 @@ implementation
 
                         graphPlotsList.addMousePointTracker( mousePointTracker );
 
-                        PBGraphXY.GraphicDrawer.setMousePointTrackingActive( True );
+                        PBGraphXY.GraphicDrawer.setRedrawOnMouseMoveActive( True );
 
                     PBGraphXY.updateGraphics( self, graphPlotsList );
 
