@@ -73,10 +73,10 @@ interface
                                             const   addTextUnderlayIn   : boolean = False;
                                             const   textSizeIn          : integer = 9;
                                             const   textRotationAngleIn : double = 0;
-                                            const   textAlignmentIn     : TAlignment = TAlignment.taLeftJustify;
-                                            const   textLayoutIn        : TTextLayout = TTextLayout.tlTop;
+                                            const   textHorAlignmentIn  : TAlignment = TAlignment.taLeftJustify;
+                                            const   textVertAlignmentIn : TVerticalAlignment = TVerticalAlignment.taAlignTop;
                                             const   textColourIn        : TColor = TColors.SysWindowText;
-                                            const   textFontStylesIn    : TFontStyles = []                      );
+                                            const   textFontStylesIn    : TFontStyles = []                                      );
                     //groups
                         //arrow
                             procedure addArrow( const   arrowLengthIn,
@@ -118,7 +118,7 @@ implementation
     //public
         //add different drawing graphic objects
             //arc
-                procedure TGraphic2DList.addArc( const   arcCentreXIn, arcCentreYIn,
+                procedure TGraphic2DList.addArc(const   arcCentreXIn, arcCentreYIn,
                                                         arcXRadiusIn, arcYRadiusIn,
                                                         startAngleIn, endAngleIn    : double;
                                                 const   filledIn                    : boolean = False;
@@ -148,7 +148,7 @@ implementation
                     end;
 
             //ellipse
-                procedure TGraphic2DList.addEllipse( const   diameterXIn,  diameterYIn,
+                procedure TGraphic2DList.addEllipse(const   diameterXIn,  diameterYIn,
                                                             centreXIn,    centreYIn     : double;
                                                     const   filledIn                    : boolean = True;
                                                     const   lineThicknessIn             : integer = 2;
@@ -174,10 +174,10 @@ implementation
 
             //geometry
                 //line
-                    procedure TGraphic2DList.addLine(const lineIn            : TGeomLine;
-                                                    const lineThicknessIn   : integer = 2;
-                                                    const colourIn          : TColor = TColors.Black;
-                                                    const styleIn           : TPenStyle = TPenStyle.psSolid );
+                    procedure TGraphic2DList.addLine(   const lineIn            : TGeomLine;
+                                                        const lineThicknessIn   : integer = 2;
+                                                        const colourIn          : TColor = TColors.Black;
+                                                        const styleIn           : TPenStyle = TPenStyle.psSolid );
                         var
                             newGraphicGeometry : TGraphicGeometry;
                         begin
@@ -190,10 +190,10 @@ implementation
                         end;
 
                 //polyline
-                    procedure TGraphic2DList.addPolyline(const polylineIn        : TGeomPolyLine;
-                                                        const lineThicknessIn   : integer = 2;
-                                                        const colourIn          : TColor = TColors.Black;
-                                                        const styleIn           : TPenStyle = TPenStyle.psSolid );
+                    procedure TGraphic2DList.addPolyline(   const polylineIn        : TGeomPolyLine;
+                                                            const lineThicknessIn   : integer = 2;
+                                                            const colourIn          : TColor = TColors.Black;
+                                                            const styleIn           : TPenStyle = TPenStyle.psSolid );
                         var
                             newGraphicGeometry : TGraphicGeometry;
                         begin
@@ -206,7 +206,7 @@ implementation
                         end;
 
                 //polygon
-                    procedure TGraphic2DList.addPolygon( const polygonIn         : TGeomPolygon;
+                    procedure TGraphic2DList.addPolygon(const polygonIn         : TGeomPolygon;
                                                         const filledIn          : boolean = True;
                                                         const lineThicknessIn   : integer = 2;
                                                         const fillColourIn      : TColor = TColors.Null;
@@ -226,7 +226,7 @@ implementation
                         end;
 
             //rectanlge
-                procedure TGraphic2DList.addRectangle(   const   widthIn, heightIn,
+                procedure TGraphic2DList.addRectangle(  const   widthIn, heightIn,
                                                                 leftIn, bottomIn    : double;
                                                         const   filledIn            : boolean = True;
                                                         const   lineThicknessIn     : integer = 2;
@@ -253,15 +253,15 @@ implementation
                     end;
 
             //text
-                procedure TGraphic2DList.addText(const   textXIn, textYIn    : double;
-                                                const   textStringIn        : string;
-                                                const   addTextUnderlayIn   : boolean = False;
-                                                const   textSizeIn          : integer = 9;
-                                                const   textRotationAngleIn : double = 0;
-                                                const   textAlignmentIn     : TAlignment = TAlignment.taLeftJustify;
-                                                const   textLayoutIn        : TTextLayout = TTextLayout.tlTop;
-                                                const   textColourIn        : TColor = TColors.SysWindowText;
-                                                const   textFontStylesIn    : TFontStyles = []                      );
+                procedure TGraphic2DList.addText(   const   textXIn, textYIn    : double;
+                                                    const   textStringIn        : string;
+                                                    const   addTextUnderlayIn   : boolean = False;
+                                                    const   textSizeIn          : integer = 9;
+                                                    const   textRotationAngleIn : double = 0;
+                                                    const   textHorAlignmentIn  : TAlignment = TAlignment.taLeftJustify;
+                                            const   textVertAlignmentIn : TVerticalAlignment = TVerticalAlignment.taAlignTop;
+                                                    const   textColourIn        : TColor = TColors.SysWindowText;
+                                                    const   textFontStylesIn    : TFontStyles = []                              );
                     var
                         textTopLeftPoint    : TGeomPoint;
                         newGraphicText      : TGraphicText;
@@ -275,8 +275,8 @@ implementation
                                                                 textSizeIn,
                                                                 textRotationAngleIn,
                                                                 trim( textStringIn ),
-                                                                textAlignmentIn,
-                                                                textLayoutIn,
+                                                                textHorAlignmentIn,
+                                                                textVertAlignmentIn,
                                                                 textColourIn,
                                                                 textFontStylesIn,
                                                                 textTopLeftPoint    );
@@ -286,7 +286,7 @@ implementation
 
             //groups
                 //arrow
-                    procedure TGraphic2DList.addArrow(   const   arrowLengthIn,
+                    procedure TGraphic2DList.addArrow(  const   arrowLengthIn,
                                                                 directionAngleIn    : double;
                                                         const   arrowOriginPointIn  : TGeomPoint;
                                                         const   arrowOriginIn       : EArrowOrigin = EArrowOrigin.aoTail;
@@ -312,7 +312,7 @@ implementation
                         end;
 
                 //arrow group
-                    procedure TGraphic2DList.addArrowGroup(  const   arrowLengthIn           : double;
+                    procedure TGraphic2DList.addArrowGroup( const   arrowLengthIn           : double;
                                                             const   arrowGroupLineIn        : TGeomLine;
                                                             const   arrowOriginIn           : EArrowOrigin = EArrowOrigin.aoTail;
                                                             const   arrowGroupDirectionIn   : EArrowGroupDirection = EArrowGroupDirection.agdNormal;
@@ -339,7 +339,7 @@ implementation
                             addGraphicObject( newGraphicArrowGroup );
                         end;
 
-                    procedure TGraphic2DList.addArrowGroup(  const   arrowLengthIn           : double;
+                    procedure TGraphic2DList.addArrowGroup( const   arrowLengthIn           : double;
                                                             const   arrowGroupPolylineIn    : TGeomPolyLine;
                                                             const   arrowOriginIn           : EArrowOrigin = EArrowOrigin.aoTail;
                                                             const   arrowGroupDirectionIn   : EArrowGroupDirection = EArrowGroupDirection.agdNormal;

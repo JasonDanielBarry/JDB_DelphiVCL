@@ -71,7 +71,7 @@ implementation
 
                     FreeAndNil( polygon );
 
-                    graphicsListInOut.addText(50, 100, 'This is a polygon'#13'rotated 45'#176, True, 9, 45, taCenter, tlCenter);
+                    graphicsListInOut.addText(50, 100, 'This is a polygon'#13'rotated 45'#176, True, 9, 45, taCenter, taVerticalCenter);
 
                 //line 1
                     graphicsListInOut.setCurrentDrawingLayer('Line Layer');
@@ -133,9 +133,9 @@ implementation
 
                     graphicsListInOut.addText(0, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (0, -30)');
 
-                    graphicsListInOut.addText(100, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (100, -30)', False, 9, 0, taCenter, tlCenter);
+                    graphicsListInOut.addText(100, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (100, -30)', False, 9, 0, taCenter, taVerticalCenter);
 
-                    graphicsListInOut.addText(200, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (200, -30)', False, 9, 0, taRightJustify, tlBottom);
+                    graphicsListInOut.addText(200, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (200, -30)', False, 9, 0, taRightJustify, taAlignBottom);
 
                 //vertical boundary test
                     graphicsListInOut.setCurrentDrawingLayer('Text Layer 2');
@@ -146,7 +146,7 @@ implementation
                                                 18,
                                                 35,
                                                 TAlignment.taLeftJustify,
-                                                TTextLayout.tlTop,
+                                                TVerticalAlignment.taAlignTop,
                                                 Tcolors.Darkred,
                                                 [TFontStyle.fsBold, TFontStyle.fsItalic, TFontStyle.fsUnderline] );
 
