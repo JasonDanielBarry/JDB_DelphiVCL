@@ -3,7 +3,9 @@ unit GraphPlotsListClass;
 interface
 
     uses
-        GraphicLinePlotClass,
+        System.SysUtils,
+        GeomPolyLineClass,
+        GraphicPolylineClass,
         GraphicScatterPlotClass,
         GraphicMousePointTrackerClass,
         GraphXYTypes,
@@ -26,14 +28,19 @@ implementation
     //private
         procedure TGraphPlotsList.addLinePlot(const graphPlotIn : TGraphPlotData);
             var
-                graphicLinePlot : TGraphicLinePlot;
+                tempPolyline    : TGeomPolyLine;
+                graphicLinePlot : TGraphicPolyline;
             begin
-                graphicLinePlot := TGraphicLinePlot.create( graphPlotIn.plottingSize,
+                tempPolyline := TGeomPolyLine.create( graphPlotIn.arrDataPoints );
+
+                graphicLinePlot := TGraphicPolyline.create( graphPlotIn.plottingSize,
                                                             graphPlotIn.plotColour,
                                                             graphPlotIn.lineStyle,
-                                                            graphPlotIn.arrDataPoints   );
+                                                            tempPolyline            );
 
                 addGraphicObject( graphicLinePlot );
+
+                FreeAndNil( tempPolyline );
             end;
 
         procedure TGraphPlotsList.addScatterPlot(const graphPlotIn : TGraphPlotData);

@@ -11,7 +11,7 @@ uses
     GeomBox,
     GeomPolyLineClass,
     GraphicScatterPlotClass,
-    GraphicLinePlotClass,
+    GraphicPolylineClass,
     GraphicMousePointTrackerClass,
     GraphicGridClass,
     GraphPlotsListClass,

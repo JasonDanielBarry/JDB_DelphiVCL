@@ -29,17 +29,22 @@ interface
                                                     startAngleIn, endAngleIn    : double;
                                             const   filledIn                    : boolean = False;
                                             const   lineThicknessIn             : integer = 2;
+                                            const   rotationAngleIn             : double = 0;
                                             const   fillColourIn                : TColor = TColors.Null;
                                             const   lineColourIn                : TColor = TColors.Black;
                                             const   lineStyleIn                 : TPenStyle = TPenStyle.psSolid );
                     //ellipse
                         procedure addEllipse(   const   diameterXIn,  diameterYIn,
-                                                        centreXIn,    centreYIn     : double;
+                                                        handleXIn,    handleYIn     : double;
                                                 const   filledIn                    : boolean = True;
                                                 const   lineThicknessIn             : integer = 2;
+                                                const   rotationAngleIn             : double = 0;
+                                                const   scaleTypeIn                 : EScaleType = EScaleType.scDrawing;
+                                                const   horizontalAlignmentIn       : THorzRectAlign = THorzRectAlign.Center;
+                                                const   verticalAlignmentIn         : TVertRectAlign = TVertRectAlign.Center;
                                                 const   fillColourIn                : TColor = TColors.Null;
                                                 const   lineColourIn                : TColor = TColors.Black;
-                                                const   lineStyleIn                 : TPenStyle = TPenStyle.psSolid );
+                                                const   lineStyleIn                 : TPenStyle = TPenStyle.psSolid             );
                     //geometry
                         //line
                             procedure addLine(  const lineIn            : TGeomLine;
@@ -60,23 +65,28 @@ interface
                                                     const lineStyleIn       : TPenStyle = TPenStyle.psSolid     );
                     //rectanlge
                         procedure addRectangle( const   widthIn, heightIn,
-                                                        leftIn, bottomIn    : double;
-                                                const   filledIn            : boolean = True;
-                                                const   lineThicknessIn     : integer = 2;
-                                                const   cornerRadiusIn      : double = 0;
-                                                const   fillColourIn        : TColor = TColors.Null;
-                                                const   lineColourIn        : TColor = TColors.Black;
-                                                const   lineStyleIn         : TPenStyle = TPenStyle.psSolid );
+                                                        handleXIn, handleYIn    : double;
+                                                const   filledIn                : boolean = True;
+                                                const   lineThicknessIn         : integer = 2;
+                                                const   cornerRadiusIn          : double = 0;
+                                                const   rotationAngleIn         : double = 0;
+                                                const   scaleTypeIn             : EScaleType = EScaleType.scDrawing;
+                                                const   horizontalAlignmentIn   : THorzRectAlign = THorzRectAlign.Center;
+                                                const   verticalAlignmentIn     : TVertRectAlign = TVertRectAlign.Center;
+                                                const   fillColourIn            : TColor = TColors.Null;
+                                                const   lineColourIn            : TColor = TColors.Black;
+                                                const   lineStyleIn             : TPenStyle = TPenStyle.psSolid             );
                     //text
-                        procedure addText(  const   textXIn, textYIn    : double;
-                                            const   textStringIn        : string;
-                                            const   addTextUnderlayIn   : boolean = False;
-                                            const   textSizeIn          : integer = 9;
-                                            const   textRotationAngleIn : double = 0;
-                                            const   textHorAlignmentIn  : TAlignment = TAlignment.taLeftJustify;
-                                            const   textVertAlignmentIn : TVerticalAlignment = TVerticalAlignment.taAlignTop;
-                                            const   textColourIn        : TColor = TColors.SysWindowText;
-                                            const   textFontStylesIn    : TFontStyles = []                                      );
+                        procedure addText(  const   handleXIn, handleYIn    : double;
+                                            const   textStringIn            : string;
+                                            const   addTextUnderlayIn       : boolean = False;
+                                            const   textSizeIn              : integer = 9;
+                                            const   rotationAngleIn         : double = 0;
+                                            const   scaleTypeIn             : EScaleType = EScaleType.scCanvas;
+                                            const   horizontalAlignmentIn   : THorzRectAlign = THorzRectAlign.Center;
+                                            const   verticalAlignmentIn     : TVertRectAlign = TVertRectAlign.Center;
+                                            const   textColourIn            : TColor = TColors.SysWindowText;
+                                            const   textFontStylesIn        : TFontStyles = []                          );
                     //groups
                         //arrow
                             procedure addArrow( const   arrowLengthIn,
@@ -123,6 +133,7 @@ implementation
                                                         startAngleIn, endAngleIn    : double;
                                                 const   filledIn                    : boolean = False;
                                                 const   lineThicknessIn             : integer = 2;
+                                                const   rotationAngleIn             : double = 0;
                                                 const   fillColourIn                : TColor = TColors.Null;
                                                 const   lineColourIn                : TColor = TColors.Black;
                                                 const   lineStyleIn                 : TPenStyle = TPenStyle.psSolid );
@@ -140,6 +151,7 @@ implementation
                                                                 lineThicknessIn,
                                                                 arcXRadiusIn, arcYRadiusIn,
                                                                 startAngleIn, endAngleIn,
+                                                                rotationAngleIn,
                                                                 fillColourIn, lineColourIn,
                                                                 lineStyleIn,
                                                                 centrePoint                 );
@@ -149,25 +161,33 @@ implementation
 
             //ellipse
                 procedure TGraphic2DList.addEllipse(const   diameterXIn,  diameterYIn,
-                                                            centreXIn,    centreYIn     : double;
+                                                            handleXIn,    handleYIn     : double;
                                                     const   filledIn                    : boolean = True;
                                                     const   lineThicknessIn             : integer = 2;
+                                                    const   rotationAngleIn             : double = 0;
+                                                    const   scaleTypeIn                 : EScaleType = EScaleType.scDrawing;
+                                                    const   horizontalAlignmentIn       : THorzRectAlign = THorzRectAlign.Center;
+                                                    const   verticalAlignmentIn         : TVertRectAlign = TVertRectAlign.Center;
                                                     const   fillColourIn                : TColor = TColors.Null;
                                                     const   lineColourIn                : TColor = TColors.Black;
-                                                    const   lineStyleIn                 : TPenStyle = TPenStyle.psSolid );
+                                                    const   lineStyleIn                 : TPenStyle = TPenStyle.psSolid             );
                     var
-                        centrePoint         : TGeomPoint;
+                        handlePoint         : TGeomPoint;
                         newGraphicEllipse   : TGraphicEllipse;
                     begin
-                        centrePoint := TGeomPoint.create( centreXIn, centreYIn );
+                        handlePoint := TGeomPoint.create( handleXIn, handleYIn );
 
                         newGraphicEllipse := TGraphicEllipse.create(    filledIn,
                                                                         lineThicknessIn,
                                                                         diameterXIn, diameterYIn,
+                                                                        rotationAngleIn,
+                                                                        scaleTypeIn,
+                                                                        horizontalAlignmentIn,
+                                                                        verticalAlignmentIn,
                                                                         fillColourIn,
                                                                         lineColourIn,
                                                                         lineStyleIn,
-                                                                        centrePoint                 );
+                                                                        handlePoint                 );
 
                         addGraphicObject( newGraphicEllipse );
                     end;
@@ -227,59 +247,69 @@ implementation
 
             //rectanlge
                 procedure TGraphic2DList.addRectangle(  const   widthIn, heightIn,
-                                                                leftIn, bottomIn    : double;
-                                                        const   filledIn            : boolean = True;
-                                                        const   lineThicknessIn     : integer = 2;
-                                                        const   cornerRadiusIn      : double = 0;
-                                                        const   fillColourIn        : TColor = TColors.Null;
-                                                        const   lineColourIn        : TColor = TColors.Black;
-                                                        const   lineStyleIn         : TPenStyle = TPenStyle.psSolid );
+                                                                handleXIn, handleYIn    : double;
+                                                        const   filledIn                : boolean = True;
+                                                        const   lineThicknessIn         : integer = 2;
+                                                        const   cornerRadiusIn          : double = 0;
+                                                        const   rotationAngleIn         : double = 0;
+                                                        const   scaleTypeIn             : EScaleType = EScaleType.scDrawing;
+                                                        const   horizontalAlignmentIn   : THorzRectAlign = THorzRectAlign.Center;
+                                                        const   verticalAlignmentIn     : TVertRectAlign = TVertRectAlign.Center;
+                                                        const   fillColourIn            : TColor = TColors.Null;
+                                                        const   lineColourIn            : TColor = TColors.Black;
+                                                        const   lineStyleIn             : TPenStyle = TPenStyle.psSolid             );
                     var
                         newGraphicRectangle : TGraphicRectangle;
-                        bottomLeftPoint     : TGeomPoint;
+                        handlePoint         : TGeomPoint;
                     begin
-                        bottomLeftPoint := TGeomPoint.create( leftIn, bottomIn );
+                        handlePoint := TGeomPoint.create( handleXIn, handleYIn );
 
                         newGraphicRectangle := TGraphicRectangle.create(    filledIn,
                                                                             lineThicknessIn,
                                                                             cornerRadiusIn,
                                                                             widthIn, heightIn,
+                                                                            rotationAngleIn,
+                                                                            scaleTypeIn,
+                                                                            horizontalAlignmentIn,
+                                                                            verticalAlignmentIn,
                                                                             fillColourIn,
                                                                             lineColourIn,
                                                                             lineStyleIn,
-                                                                            bottomLeftPoint     );
+                                                                            handlePoint             );
 
                         addGraphicObject( newGraphicRectangle );
                     end;
 
             //text
-                procedure TGraphic2DList.addText(   const   textXIn, textYIn    : double;
-                                                    const   textStringIn        : string;
-                                                    const   addTextUnderlayIn   : boolean = False;
-                                                    const   textSizeIn          : integer = 9;
-                                                    const   textRotationAngleIn : double = 0;
-                                                    const   textHorAlignmentIn  : TAlignment = TAlignment.taLeftJustify;
-                                            const   textVertAlignmentIn : TVerticalAlignment = TVerticalAlignment.taAlignTop;
-                                                    const   textColourIn        : TColor = TColors.SysWindowText;
-                                                    const   textFontStylesIn    : TFontStyles = []                              );
+                procedure TGraphic2DList.addText(   const   handleXIn, handleYIn    : double;
+                                                    const   textStringIn            : string;
+                                                    const   addTextUnderlayIn       : boolean = False;
+                                                    const   textSizeIn              : integer = 9;
+                                                    const   rotationAngleIn         : double = 0;
+                                                    const   scaleTypeIn             : EScaleType = EScaleType.scCanvas;
+                                                    const   horizontalAlignmentIn   : THorzRectAlign = THorzRectAlign.Center;
+                                                    const   verticalAlignmentIn     : TVertRectAlign = TVertRectAlign.Center;
+                                                    const   textColourIn            : TColor = TColors.SysWindowText;
+                                                    const   textFontStylesIn        : TFontStyles = []                          );
                     var
-                        textTopLeftPoint    : TGeomPoint;
-                        newGraphicText      : TGraphicText;
+                        handlePoint     : TGeomPoint;
+                        newGraphicText  : TGraphicText;
                     begin
                         if ( trim(textStringIn) = '' ) then
                             exit();
 
-                        textTopLeftPoint := TGeomPoint.create( textXIn, textYIn );
+                        handlePoint := TGeomPoint.create( handleXIn, handleYIn );
 
                         newGraphicText := TGraphicText.create(  addTextUnderlayIn,
                                                                 textSizeIn,
-                                                                textRotationAngleIn,
+                                                                rotationAngleIn,
                                                                 trim( textStringIn ),
-                                                                textHorAlignmentIn,
-                                                                textVertAlignmentIn,
+                                                                scaleTypeIn,
+                                                                horizontalAlignmentIn,
+                                                                verticalAlignmentIn,
                                                                 textColourIn,
                                                                 textFontStylesIn,
-                                                                textTopLeftPoint    );
+                                                                handlePoint             );
 
                         addGraphicObject( newGraphicText );
                     end;
