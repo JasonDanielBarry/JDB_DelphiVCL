@@ -31,7 +31,7 @@ interface
                                             const   lineThicknessIn             : integer = 2;
                                             const   rotationAngleIn             : double = 0;
                                             const   fillColourIn                : TColor = TColors.Null;
-                                            const   lineColourIn                : TColor = TColors.Black;
+                                            const   lineColourIn                : TColor = TColors.SysWindowText;
                                             const   lineStyleIn                 : TPenStyle = TPenStyle.psSolid );
                     //ellipse
                         procedure addEllipse(   const   diameterXIn,  diameterYIn,
@@ -43,25 +43,25 @@ interface
                                                 const   horizontalAlignmentIn       : THorzRectAlign = THorzRectAlign.Center;
                                                 const   verticalAlignmentIn         : TVertRectAlign = TVertRectAlign.Center;
                                                 const   fillColourIn                : TColor = TColors.Null;
-                                                const   lineColourIn                : TColor = TColors.Black;
+                                                const   lineColourIn                : TColor = TColors.SysWindowText;
                                                 const   lineStyleIn                 : TPenStyle = TPenStyle.psSolid             );
                     //geometry
                         //line
                             procedure addLine(  const lineIn            : TGeomLine;
                                                 const lineThicknessIn   : integer = 2;
-                                                const colourIn          : TColor = TColors.Black;
+                                                const colourIn          : TColor = TColors.SysWindowText;
                                                 const styleIn           : TPenStyle = TPenStyle.psSolid );
                         //polyline
                             procedure addPolyline(  const polylineIn        : TGeomPolyLine;
                                                     const lineThicknessIn   : integer = 2;
-                                                    const colourIn          : TColor = TColors.Black;
+                                                    const colourIn          : TColor = TColors.SysWindowText;
                                                     const styleIn           : TPenStyle = TPenStyle.psSolid );
                         //polygon
                             procedure addPolygon(   const polygonIn         : TGeomPolygon;
                                                     const filledIn          : boolean = True;
                                                     const lineThicknessIn   : integer = 2;
                                                     const fillColourIn      : TColor = TColors.Null;
-                                                    const lineColourIn      : TColor = TColors.Black;
+                                                    const lineColourIn      : TColor = TColors.SysWindowText;
                                                     const lineStyleIn       : TPenStyle = TPenStyle.psSolid     );
                     //rectanlge
                         procedure addRectangle( const   widthIn, heightIn,
@@ -71,10 +71,10 @@ interface
                                                 const   cornerRadiusIn          : double = 0;
                                                 const   rotationAngleIn         : double = 0;
                                                 const   scaleTypeIn             : EScaleType = EScaleType.scDrawing;
-                                                const   horizontalAlignmentIn   : THorzRectAlign = THorzRectAlign.Center;
-                                                const   verticalAlignmentIn     : TVertRectAlign = TVertRectAlign.Center;
+                                                const   horizontalAlignmentIn   : THorzRectAlign = THorzRectAlign.Left;
+                                                const   verticalAlignmentIn     : TVertRectAlign = TVertRectAlign.Bottom;
                                                 const   fillColourIn            : TColor = TColors.Null;
-                                                const   lineColourIn            : TColor = TColors.Black;
+                                                const   lineColourIn            : TColor = TColors.SysWindowText;
                                                 const   lineStyleIn             : TPenStyle = TPenStyle.psSolid             );
                     //text
                         procedure addText(  const   handleXIn, handleYIn    : double;
@@ -83,8 +83,8 @@ interface
                                             const   textSizeIn              : integer = 9;
                                             const   rotationAngleIn         : double = 0;
                                             const   scaleTypeIn             : EScaleType = EScaleType.scCanvas;
-                                            const   horizontalAlignmentIn   : THorzRectAlign = THorzRectAlign.Center;
-                                            const   verticalAlignmentIn     : TVertRectAlign = TVertRectAlign.Center;
+                                            const   horizontalAlignmentIn   : THorzRectAlign = THorzRectAlign.Left;
+                                            const   verticalAlignmentIn     : TVertRectAlign = TVertRectAlign.Top;
                                             const   textColourIn            : TColor = TColors.SysWindowText;
                                             const   textFontStylesIn        : TFontStyles = []                          );
                     //groups
@@ -96,7 +96,7 @@ interface
                                                 const   filledIn            : boolean = True;
                                                 const   lineThicknessIn     : integer = 3;
                                                 const   fillColourIn        : TColor = TColors.Null;
-                                                const   lineColourIn        : TColor = TColors.Black;
+                                                const   lineColourIn        : TColor = TColors.SysWindowText;
                                                 const   lineStyleIn         : TPenStyle = TPenStyle.psSolid         );
                         //arrow group
                             //single line
@@ -108,7 +108,7 @@ interface
                                                         const   filledIn                : boolean = True;
                                                         const   lineThicknessIn         : integer = 3;
                                                         const   fillColourIn            : TColor = TColors.Null;
-                                                        const   lineColourIn            : TColor = TColors.Black;
+                                                        const   lineColourIn            : TColor = TColors.SysWindowText;
                                                         const   lineStyleIn             : TPenStyle = TPenStyle.psSolid                         ); overload;
                             //polyline
                                 procedure addArrowGroup(const   arrowLengthIn           : double;
@@ -119,7 +119,7 @@ interface
                                                         const   filledIn                : boolean = True;
                                                         const   lineThicknessIn         : integer = 3;
                                                         const   fillColourIn            : TColor = TColors.Null;
-                                                        const   lineColourIn            : TColor = TColors.Black;
+                                                        const   lineColourIn            : TColor = TColors.SysWindowText;
                                                         const   lineStyleIn             : TPenStyle = TPenStyle.psSolid                         ); overload;
         end;
 
@@ -135,7 +135,7 @@ implementation
                                                 const   lineThicknessIn             : integer = 2;
                                                 const   rotationAngleIn             : double = 0;
                                                 const   fillColourIn                : TColor = TColors.Null;
-                                                const   lineColourIn                : TColor = TColors.Black;
+                                                const   lineColourIn                : TColor = TColors.SysWindowText;
                                                 const   lineStyleIn                 : TPenStyle = TPenStyle.psSolid );
                     var
                         centrePoint     : TGeomPoint;
@@ -169,7 +169,7 @@ implementation
                                                     const   horizontalAlignmentIn       : THorzRectAlign = THorzRectAlign.Center;
                                                     const   verticalAlignmentIn         : TVertRectAlign = TVertRectAlign.Center;
                                                     const   fillColourIn                : TColor = TColors.Null;
-                                                    const   lineColourIn                : TColor = TColors.Black;
+                                                    const   lineColourIn                : TColor = TColors.SysWindowText;
                                                     const   lineStyleIn                 : TPenStyle = TPenStyle.psSolid             );
                     var
                         handlePoint         : TGeomPoint;
@@ -196,7 +196,7 @@ implementation
                 //line
                     procedure TGraphic2DList.addLine(   const lineIn            : TGeomLine;
                                                         const lineThicknessIn   : integer = 2;
-                                                        const colourIn          : TColor = TColors.Black;
+                                                        const colourIn          : TColor = TColors.SysWindowText;
                                                         const styleIn           : TPenStyle = TPenStyle.psSolid );
                         var
                             newGraphicGeometry : TGraphicGeometry;
@@ -212,7 +212,7 @@ implementation
                 //polyline
                     procedure TGraphic2DList.addPolyline(   const polylineIn        : TGeomPolyLine;
                                                             const lineThicknessIn   : integer = 2;
-                                                            const colourIn          : TColor = TColors.Black;
+                                                            const colourIn          : TColor = TColors.SysWindowText;
                                                             const styleIn           : TPenStyle = TPenStyle.psSolid );
                         var
                             newGraphicGeometry : TGraphicGeometry;
@@ -230,7 +230,7 @@ implementation
                                                         const filledIn          : boolean = True;
                                                         const lineThicknessIn   : integer = 2;
                                                         const fillColourIn      : TColor = TColors.Null;
-                                                        const lineColourIn      : TColor = TColors.Black;
+                                                        const lineColourIn      : TColor = TColors.SysWindowText;
                                                         const lineStyleIn       : TPenStyle = TPenStyle.psSolid );
                         var
                             newGraphicGeometry : TGraphicGeometry;
@@ -253,10 +253,10 @@ implementation
                                                         const   cornerRadiusIn          : double = 0;
                                                         const   rotationAngleIn         : double = 0;
                                                         const   scaleTypeIn             : EScaleType = EScaleType.scDrawing;
-                                                        const   horizontalAlignmentIn   : THorzRectAlign = THorzRectAlign.Center;
-                                                        const   verticalAlignmentIn     : TVertRectAlign = TVertRectAlign.Center;
+                                                        const   horizontalAlignmentIn   : THorzRectAlign = THorzRectAlign.Left;
+                                                        const   verticalAlignmentIn     : TVertRectAlign = TVertRectAlign.Bottom;
                                                         const   fillColourIn            : TColor = TColors.Null;
-                                                        const   lineColourIn            : TColor = TColors.Black;
+                                                        const   lineColourIn            : TColor = TColors.SysWindowText;
                                                         const   lineStyleIn             : TPenStyle = TPenStyle.psSolid             );
                     var
                         newGraphicRectangle : TGraphicRectangle;
@@ -287,10 +287,10 @@ implementation
                                                     const   textSizeIn              : integer = 9;
                                                     const   rotationAngleIn         : double = 0;
                                                     const   scaleTypeIn             : EScaleType = EScaleType.scCanvas;
-                                                    const   horizontalAlignmentIn   : THorzRectAlign = THorzRectAlign.Center;
-                                                    const   verticalAlignmentIn     : TVertRectAlign = TVertRectAlign.Center;
+                                                    const   horizontalAlignmentIn   : THorzRectAlign = THorzRectAlign.Left;
+                                                    const   verticalAlignmentIn     : TVertRectAlign = TVertRectAlign.Top;
                                                     const   textColourIn            : TColor = TColors.SysWindowText;
-                                                    const   textFontStylesIn        : TFontStyles = []                          );
+                                                    const   textFontStylesIn        : TFontStyles = []                      );
                     var
                         handlePoint     : TGeomPoint;
                         newGraphicText  : TGraphicText;
@@ -323,7 +323,7 @@ implementation
                                                         const   filledIn            : boolean = True;
                                                         const   lineThicknessIn     : integer = 3;
                                                         const   fillColourIn        : TColor = TColors.Null;
-                                                        const   lineColourIn        : TColor = TColors.Black;
+                                                        const   lineColourIn        : TColor = TColors.SysWindowText;
                                                         const   lineStyleIn         : TPenStyle = TPenStyle.psSolid         );
                         var
                             newGraphicArrow : TGraphicArrow;
@@ -350,7 +350,7 @@ implementation
                                                             const   filledIn                : boolean = True;
                                                             const   lineThicknessIn         : integer = 3;
                                                             const   fillColourIn            : TColor = TColors.Null;
-                                                            const   lineColourIn            : TColor = TColors.Black;
+                                                            const   lineColourIn            : TColor = TColors.SysWindowText;
                                                             const   lineStyleIn             : TPenStyle = TPenStyle.psSolid                             );
                         var
                             newGraphicArrowGroup : TGraphicArrowGroup;
@@ -377,7 +377,7 @@ implementation
                                                             const   filledIn                : boolean = True;
                                                             const   lineThicknessIn         : integer = 3;
                                                             const   fillColourIn            : TColor = TColors.Null;
-                                                            const   lineColourIn            : TColor = TColors.Black;
+                                                            const   lineColourIn            : TColor = TColors.SysWindowText;
                                                             const   lineStyleIn             : TPenStyle = TPenStyle.psSolid                         );
                         var
                             newGraphicArrowGroup : TGraphicArrowGroup;
