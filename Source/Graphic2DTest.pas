@@ -51,149 +51,149 @@ implementation
                 polyline        : TGeomPolyLine;
                 polygon         : TGeomPolygon;
             begin
-//                //polygon
-//                    graphicsListInOut.setCurrentDrawingLayer('Polygon Layer');
-//
-//                    polygon := TGeomPolygon.create();
-//
-//                    polygon.addVertex(10, 10);
-//                    polygon.addVertex(50, 10);
-//                    polygon.addVertex(100, 40);
-//                    polygon.addVertex(100, 70);
-//                    polygon.addVertex(50, 100);
-//                    polygon.addVertex(10, 100);
-//
-//                    polygon.rotate(45);
-//
-//                    polygon.setCentrePoint(50, 100);
-//
-//                    graphicsListInOut.addPolygon( polygon, True, 9, TColors.Aqua, TColors.Darkred, TPenStyle.psDashDot );
-//
-//                    FreeAndNil( polygon );
-//
-//                    graphicsListInOut.addText(50, 100, 'This is a polygon'#13'rotated 45'#176, True, 9, 45, EScaleType.scCanvas, THorzRectAlign.Center, TVertRectAlign.Center );
-//
-//                //line 1
-//                    graphicsListInOut.setCurrentDrawingLayer('Line Layer');
-//
-//                     point1 := TGeomPoint.create(-5, -5);
-//                     point2 := TGeomPoint.create(115, 115);
-//
-//                     line := TGeomLine.create(point1, point2);
-//
-//                     graphicsListInOut.addLine(line, 4, TColors.Black);
-//
-//                    graphicsListInOut.addText(115, 115, 'This is a line');
-//
-//                //polyline
-//                    graphicsListInOut.setCurrentDrawingLayer('Polyline Layer');
-//
-//                    polyline := TGeomPolyLine.create();
-//
-//                    const NUM_POINTS : integer = 3000;
-//
-//                    for i := 0 to NUM_POINTS do
-//                        begin
-//                            x := -100 + ((300 - 10) / NUM_POINTS) * i;
-//                            y := 5 * sin(x - 10);
-//
-//                            polyline.addVertex(x, y);
-//                        end;
-//
-//                    polyline.setCentrePoint( line.calculateCentrePoint() );
-//
-//                    polyline.rotate(30);
-//
-//                    polyline.scale( 1.25 );
-//
-//                    graphicsListInOut.addPolyline(polyline, 3, TColors.Blue);
-//
-//                    FreeAndNil( line );
-//
-//                    graphicsListInOut.addText( polyline.boundingBox().xMax, polyline.boundingBox().yMax, 'This is a polyline'#13'rotated 30'#176 );
-//
-//                    FreeAndNil( polyline );
+                //polygon
+                    graphicsListInOut.setCurrentDrawingLayer('Polygon Layer');
+
+                    polygon := TGeomPolygon.create();
+
+                    polygon.addVertex(10, 10);
+                    polygon.addVertex(50, 10);
+                    polygon.addVertex(100, 40);
+                    polygon.addVertex(100, 70);
+                    polygon.addVertex(50, 100);
+                    polygon.addVertex(10, 100);
+
+                    polygon.rotate(45);
+
+                    polygon.setCentrePoint(50, 100);
+
+                    graphicsListInOut.addPolygon( polygon, True, 9, TColors.Aqua, TColors.Darkred, TPenStyle.psDashDot );
+
+                    FreeAndNil( polygon );
+
+                    graphicsListInOut.addText(50, 100, 'This is a polygon'#13'rotated 45'#176, True, 9, 45, EScaleType.scCanvas, THorzRectAlign.Center, TVertRectAlign.Center );
+
+                //line 1
+                    graphicsListInOut.setCurrentDrawingLayer('Line Layer');
+
+                     point1 := TGeomPoint.create(-5, -5);
+                     point2 := TGeomPoint.create(115, 115);
+
+                     line := TGeomLine.create(point1, point2);
+
+                     graphicsListInOut.addLine(line, 4, TColors.Black);
+
+                    graphicsListInOut.addText(115, 115, 'This is a line');
+
+                //polyline
+                    graphicsListInOut.setCurrentDrawingLayer('Polyline Layer');
+
+                    polyline := TGeomPolyLine.create();
+
+                    const NUM_POINTS : integer = 3000;
+
+                    for i := 0 to NUM_POINTS do
+                        begin
+                            x := -100 + ((300 - 10) / NUM_POINTS) * i;
+                            y := 5 * sin(x - 10);
+
+                            polyline.addVertex(x, y);
+                        end;
+
+                    polyline.setCentrePoint( line.calculateCentrePoint() );
+
+                    polyline.rotate(30);
+
+                    polyline.scale( 1.25 );
+
+                    graphicsListInOut.addPolyline(polyline, 3, TColors.Blue);
+
+                    FreeAndNil( line );
+
+                    graphicsListInOut.addText( polyline.boundingBox().xMax, polyline.boundingBox().yMax, 'This is a polyline'#13'rotated 30'#176 );
+
+                    FreeAndNil( polyline );
 
                 //rectangle
                     graphicsListInOut.setCurrentDrawingLayer('Rectangle');
 
                     graphicsListInOut.addRectangle( 50, 75, 250, 10,
-                                                    True, 4, 10, 135,
+                                                    True, 4, 10, 30,
                                                     EScaleType.scDrawing,
                                                     THorzRectAlign.Left, TVertRectAlign.Bottom,
                                                     TColors.Burlywood, TColors.Darkblue, TPenStyle.psDash );
 
-//                    graphicsListInOut.addText(250, 10, 'This is a round rectangle');
+                    graphicsListInOut.addText(250, 10, 'This is a round rectangle', False, 9, 30);
 
-//                //ellipse
-//                    graphicsListInOut.setCurrentDrawingLayer('Ellipse');
-//
-//                    graphicsListInOut.addEllipse(75, 50, -100, 50, True, 6, 0, EScaleType.scDrawing, THorzRectAlign.Center, TVertRectAlign.Center, Tcolors.Lightseagreen);
-//
-//                    graphicsListInOut.addText(-100, 50, 'This is an ellipse');
+                //ellipse
+                    graphicsListInOut.setCurrentDrawingLayer('Ellipse');
 
-//                //text
-//                    graphicsListInOut.setCurrentDrawingLayer('Text Layer 1');
-//
-//                    graphicsListInOut.addText(0, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (0, -30)');
-//
-//                    graphicsListInOut.addText(  100, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (100, -30)',
-//                                                False, 9, 0, EScaleType.scCanvas,
-//                                                THorzRectAlign.Center, TVertRectAlign.Center                                );
-//
-//                    graphicsListInOut.addText(  200, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (200, -30)',
-//                                                False, 9, 0, EScaleType.scCanvas,
-//                                                THorzRectAlign.Right, TVertRectAlign.Bottom                                 );
-//
-//                //vertical boundary test
-//                    graphicsListInOut.setCurrentDrawingLayer('Text Layer 2');
-//
-//                    graphicsListInOut.addText(  150, 200,
-//                                                'This is a short'#13'sentence of'#13'3 lines',
-//                                                False,
-//                                                18,
-//                                                35,
-//                                                EScaleType.scDrawing,
-//                                                THorzRectAlign.Left,
-//                                                TVertRectAlign.Top,
-//                                                Tcolors.Darkred,
-//                                                [TFontStyle.fsBold, TFontStyle.fsItalic, TFontStyle.fsUnderline] );
-//
-//                    graphicsListInOut.addText(150, -50, 'This is a short'#13'sentence of'#13'3 lines');
-//
-//                //arrow
-//                    graphicsListInOut.setCurrentDrawingLayer('Arrow Layer');
-//
-//                    var arrowOriginPoint : TGeomPoint := TGeomPoint.create( -50, 150 );
-//
-//                    for var angle : double in [0, 30, 60, 90, 120, 150, 180] do
-//                        graphicsListInOut.addArrow( 25, angle, arrowOriginPoint );
-//
-//                //arrow group
-//                    graphicsListInOut.setCurrentDrawingLayer('Arrow Group Layer');
-//
-//                    polyline := TGeomPolyLine.create();
-//
-//                    polyline.addVertex( -200, 0 );
-//                    polyline.addVertex( -200, 100 );
-//                    polyline.addVertex( -100, 200 );
-//                    polyline.addVertex( 0, 200 );
-//
-//                    graphicsListInOut.addArrowGroup( 25, polyline, EArrowOrigin.aoHead );
-//
-//                    FreeAndNil( polyline );
-//
-//                //arc
-//                    graphicsListInOut.setCurrentDrawingLayer('Arc Layer');
-//
-//                    graphicsListInOut.addArc( -100, -125, 25, 25, 90, -90, True, 5, TColors.Red );
-//
-//                    graphicsListInOut.addArc( 0, -125, 20, 20, 45, 360-45, True, 5, TColors.Yellow );
-//                    graphicsListInOut.addEllipse( 8, 8, 0, -114, True, 1, tcolors.Black );
-//
-//
-//                    graphicsListInOut.addArc( 100, -125, 50, 50, 0, -90, False, 5 );
-//                    graphicsListInOut.addArc( 100, -125, 50, 50, 350, -10 );
+                    graphicsListInOut.addEllipse(100, 50, -100, 50, True, 6, 45, EScaleType.scDrawing, THorzRectAlign.Center, TVertRectAlign.Center, Tcolors.Lightseagreen);
+
+                    graphicsListInOut.addText(-100, 50, 'This is an ellipse', False, 9, 45, EScaleType.scCanvas, THorzRectAlign.Center, TVertRectAlign.Center);
+
+                //text
+                    graphicsListInOut.setCurrentDrawingLayer('Text Layer 1');
+
+                    graphicsListInOut.addText(0, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (0, -30)');
+
+                    graphicsListInOut.addText(  100, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (100, -30)',
+                                                False, 9, 0, EScaleType.scCanvas,
+                                                THorzRectAlign.Center, TVertRectAlign.Center                                );
+
+                    graphicsListInOut.addText(  200, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (200, -30)',
+                                                False, 9, 0, EScaleType.scCanvas,
+                                                THorzRectAlign.Right, TVertRectAlign.Bottom                                 );
+
+                //vertical boundary test
+                    graphicsListInOut.setCurrentDrawingLayer('Text Layer 2');
+
+                    graphicsListInOut.addText(  200, 250,
+                                                'This is a short'#13'sentence of'#13'3 lines',
+                                                False,
+                                                18,
+                                                35,
+                                                EScaleType.scDrawing,
+                                                THorzRectAlign.Left,
+                                                TVertRectAlign.Top,
+                                                Tcolors.Darkred,
+                                                [TFontStyle.fsBold, TFontStyle.fsItalic, TFontStyle.fsUnderline] );
+
+                    graphicsListInOut.addText(150, -50, 'This is a short'#13'sentence of'#13'3 lines');
+
+                //arrow
+                    graphicsListInOut.setCurrentDrawingLayer('Arrow Layer');
+
+                    var arrowOriginPoint : TGeomPoint := TGeomPoint.create( -50, 150 );
+
+                    for var angle : double in [0, 30, 60, 90, 120, 150, 180] do
+                        graphicsListInOut.addArrow( 25, angle, arrowOriginPoint );
+
+                //arrow group
+                    graphicsListInOut.setCurrentDrawingLayer('Arrow Group Layer');
+
+                    polyline := TGeomPolyLine.create();
+
+                    polyline.addVertex( -200, 0 );
+                    polyline.addVertex( -200, 100 );
+                    polyline.addVertex( -100, 200 );
+                    polyline.addVertex( 0, 200 );
+
+                    graphicsListInOut.addArrowGroup( 25, polyline, EArrowOrigin.aoHead );
+
+                    FreeAndNil( polyline );
+
+                //arc
+                    graphicsListInOut.setCurrentDrawingLayer('Arc Layer');
+
+                    graphicsListInOut.addArc( -100, -125, 25, 25, 90, -90, True, 5, 0, TColors.Red );
+
+                    graphicsListInOut.addArc( 0, -125, 20, 20, 45, 360-45, True, 5, 0, TColors.Yellow );
+                    graphicsListInOut.addEllipse( 8, 8, 0, -114, True, 1 ,0, EScaleType.scDrawing );
+
+
+                    graphicsListInOut.addArc( 100, -125, 50, 50, 0, -90, False, 5 );
+                    graphicsListInOut.addArc( 100, -125, 50, 50, 350, -10 );
             end;
 
         procedure TForm1.XYGraphs(var graphicsListInOut : TGraphic2DList);
@@ -294,7 +294,7 @@ implementation
                 //beam
                     graphicsListInOut.setCurrentDrawingLayer('Beam');
 
-                    graphicsListInOut.addRectangle( 300, 500, 250 + 50, 300, True, 1, 0, TColors.Lightgreen );
+                    graphicsListInOut.addRectangle( 300, 500, 250 + 50, 300, True, 1, 0, 0, EScaleType.scDrawing, THorzRectAlign.Left, TVertRectAlign.Bottom, TColors.Lightgreen );
 
                     //flanges
                         //bottom
@@ -320,7 +320,7 @@ implementation
                 //column
                     graphicsListInOut.setCurrentDrawingLayer('Column');
 
-                    graphicsListInOut.addRectangle( 250, 1000, 0, 0, True, 1, 0, TColors.Cornflowerblue );
+                    graphicsListInOut.addRectangle( 250, 1000, 0, 0, True, 1, 0, 0, EScaleType.scDrawing, THorzRectAlign.Left, TVertRectAlign.Bottom, TColors.Cornflowerblue );
 
                     //flanges
                         //left
@@ -344,7 +344,7 @@ implementation
                 //plate
                     graphicsListInOut.setCurrentDrawingLayer('Plate');
 
-                    graphicsListInOut.addRectangle( 250, 350, 250, 400, True, 1, 0, TColors.Yellow );
+                    graphicsListInOut.addRectangle( 250, 350, 250, 400, True, 1, 0, 0, EScaleType.scDrawing, THorzRectAlign.Left, TVertRectAlign.Bottom, TColors.Yellow );
 
             //weld
                 graphicsListInOut.setCurrentDrawingLayer('Weld');
@@ -481,12 +481,12 @@ implementation
             //concrete
                 graphicsListInOut.setCurrentDrawingLayer('Concrete');
 
-                graphicsListInOut.addRectangle( 450, 450, -450, 0, True, 2, 0, TColors.Lightgreen );
+                graphicsListInOut.addRectangle( 450, 450, -450, 0, True, 2, 0, 0, EScaleType.scDrawing, THorzRectAlign.Left, TVertRectAlign.Bottom, TColors.Lightgreen );
 
             //rebar
                 graphicsListInOut.setCurrentDrawingLayer('Rebar');
 
-                graphicsListInOut.addRectangle( 500, 16, -450, 75-8, True, 2, 0, TColors.Dodgerblue );
+                graphicsListInOut.addRectangle( 500, 16, -450, 75-8, True, 2, 0, 0, EScaleType.scDrawing, THorzRectAlign.Left, TVertRectAlign.Bottom, TColors.Dodgerblue );
 
             //compressing stress
                 graphicsListInOut.setCurrentDrawingLayer('Compression Stress');
