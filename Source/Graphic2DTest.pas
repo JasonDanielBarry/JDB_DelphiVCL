@@ -65,7 +65,7 @@ implementation
 
                     polygon.rotate(45);
 
-                    polygon.setCentrePoint(50, 100);
+                    polygon.setCentroidPoint(50, 100);
 
                     graphicsListInOut.addPolygon( polygon, True, 9, TColors.Aqua, TColors.Darkred, TPenStyle.psDashDot );
 
@@ -100,7 +100,7 @@ implementation
                             polyline.addVertex(x, y);
                         end;
 
-                    polyline.setCentrePoint( line.calculateCentrePoint() );
+                    polyline.setCentroidPoint( line.calculateCentroidPoint() );
 
                     polyline.rotate(30);
 
