@@ -145,11 +145,13 @@ implementation
                                                 False, 9, 0, EScaleType.scCanvas,
                                                 THorzRectAlign.Right, TVertRectAlign.Bottom                                 );
 
+                    graphicsListInOut.addText(150, -50, 'This is a short'#13'sentence of'#13'3 lines');
+
                 //vertical boundary test
                     graphicsListInOut.setCurrentDrawingLayer('Text Layer 2');
 
                     graphicsListInOut.addText(  200, 250,
-                                                'This is a short'#13'sentence of'#13'3 lines',
+                                                'This is a short' + sLineBreak + 'sentence of'#13#10'3 lines drawing scale',
                                                 False,
                                                 18,
                                                 35,
@@ -159,7 +161,18 @@ implementation
                                                 Tcolors.Darkred,
                                                 [TFontStyle.fsBold, TFontStyle.fsItalic, TFontStyle.fsUnderline] );
 
-                    graphicsListInOut.addText(150, -50, 'This is a short'#13'sentence of'#13'3 lines');
+                    graphicsListInOut.setCurrentDrawingLayer('Text Layer 3');
+
+                    graphicsListInOut.addText(  -350, -100,
+                                                'This is a short sentence of 1 lines drawing scale',
+                                                False,
+                                                18,
+                                                60,
+                                                EScaleType.scDrawing,
+                                                THorzRectAlign.Left,
+                                                TVertRectAlign.Bottom,
+                                                Tcolors.Darkred,
+                                                [TFontStyle.fsBold, TFontStyle.fsItalic, TFontStyle.fsUnderline] );
 
                 //arrow
                     graphicsListInOut.setCurrentDrawingLayer('Arrow Layer');
