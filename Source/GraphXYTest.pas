@@ -74,10 +74,12 @@ begin
             arrPoints3[i].setPoint( x, y );
         end;
 
-    AGraphXYMap.addLinePlot( 'Series 1', arrPoints1, 3 );
+
     AGraphXYMap.addLinePlot( 'Series 2', arrPoints2, 4, clBlue, TPenStyle.psDashDotDot );
     AGraphXYMap.addLinePlot( 'Series 3', arrPoints3, 5, clRed, TPenStyle.psDash );
     AGraphXYMap.addScatterPlot( 'Scatter 1', arrPoints4 );
+
+    AGraphXYMap.addLinePlot( 'Series 1', arrPoints1, 3 );
 end;
 
 end.
