@@ -151,7 +151,7 @@ implementation
                     graphicsListInOut.setCurrentDrawingLayer('Text Layer 2');
 
                     graphicsListInOut.addText(  200, 250,
-                                                'This is a short' + sLineBreak + 'sentence of'#13#10'3 lines drawing scale',
+                                                'This is a short' + sLineBreak + 'sentence of' + sLineBreak + '4 lines using' + sLineBreak + 'drawing scale',
                                                 False,
                                                 18,
                                                 35,

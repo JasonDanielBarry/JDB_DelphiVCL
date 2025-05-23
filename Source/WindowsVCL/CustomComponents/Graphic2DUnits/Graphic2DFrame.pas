@@ -160,13 +160,14 @@ implementation
                         end;
 
                 if ( (1 < checkedLayerCount) OR (checkedIndex <> selectedIndex) ) then
+                    activeOnlySelectedLayer( selectedIndex )
+                else
                     begin
-                        activeOnlySelectedLayer( selectedIndex );
-                        exit();
+                        CheckListBoxLayerTable.CheckAll( TCheckBoxState.cbChecked, False, False );
+                        sendActiveLayersToGraphicDrawer();
                     end;
 
-                CheckListBoxLayerTable.CheckAll( TCheckBoxState.cbChecked, False, False );
-                sendActiveLayersToGraphicDrawer();
+                zoomAll();
             end;
 
         procedure TCustomGraphic2D.ComboBoxZoomPercentChange(Sender: TObject);
