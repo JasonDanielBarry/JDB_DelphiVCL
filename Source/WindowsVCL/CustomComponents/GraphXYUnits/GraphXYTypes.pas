@@ -8,7 +8,7 @@ interface
         GeometryTypes;
 
     type
-        EGraphPlotType = (gpLine = 0, gpScatter = 1, gpFuntion = 2, gpClassFunction = 3);
+        EGraphPlotType = (gpLine = 0, gpScatter = 1, gpMarkerLinePlot = 2, gpFuntion = 3, gpClassFunction = 4);
 
         TSingleVariableFunction = function(x : double) : double;
 
@@ -35,6 +35,7 @@ interface
                     //line plot
                         procedure addLinePlot(  const plotNameIn    : string;
                                                 const dataPointsIn  : TArray<TGeomPoint>;
+                                                const showPointsIn  : boolean = False;
                                                 const lineSizeIn    : integer = 2;
                                                 const lineColourIn  : TColor = clWindowText;
                                                 const lineStyleIn   : TPenStyle = TPenStyle.psSolid );
@@ -74,6 +75,7 @@ implementation
                 //line plot
                     procedure TGraphXYMap.addLinePlot(  const plotNameIn    : string;
                                                         const dataPointsIn  : TArray<TGeomPoint>;
+                                                        const showPointsIn  : boolean = False;
                                                         const lineSizeIn    : integer = 2;
                                                         const lineColourIn  : TColor = clWindowText;
                                                         const lineStyleIn   : TPenStyle = TPenStyle.psSolid );
@@ -82,7 +84,12 @@ implementation
                         begin
                             newGraphPlot.plottingSize   := lineSizeIn;
                             newGraphPlot.plotName       := plotNameIn;
-                            newGraphPlot.graphPlotType  := EGraphPlotType.gpLine;
+
+                            if ( showPointsIn ) then
+                                newGraphPlot.graphPlotType  := EGraphPlotType.gpMarkerLinePlot
+                            else
+                                newGraphPlot.graphPlotType  := EGraphPlotType.gpLine;
+
                             newGraphPlot.plotColour     := lineColourIn;
                             newGraphPlot.lineStyle      := lineStyleIn;
                             TGeomPoint.copyPoints( dataPointsIn, newGraphPlot.arrDataPoints );

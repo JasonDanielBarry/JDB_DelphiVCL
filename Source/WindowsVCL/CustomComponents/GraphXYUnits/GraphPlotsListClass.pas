@@ -4,8 +4,7 @@ interface
 
     uses
         System.SysUtils,
-        GeomPolyLineClass,
-        GraphicPolylineClass,
+        GraphicLinePlotClass,
         GraphicScatterPlotClass,
         GraphicMousePointTrackerClass,
         GraphXYTypes,
@@ -28,19 +27,18 @@ implementation
     //private
         procedure TGraphPlotsList.addLinePlot(const graphPlotIn : TGraphPlotData);
             var
-                tempPolyline    : TGeomPolyLine;
-                graphicLinePlot : TGraphicPolyline;
+                showPlotPoints  : boolean;
+                graphicLinePlot : TGraphicLinePlot;
             begin
-                tempPolyline := TGeomPolyLine.create( graphPlotIn.arrDataPoints );
+                showPlotPoints := graphPlotIn.graphPlotType = EGraphPlotType.gpMarkerLinePlot;
 
-                graphicLinePlot := TGraphicPolyline.create( graphPlotIn.plottingSize,
+                graphicLinePlot := TGraphicLinePlot.create( showPlotPoints,
+                                                            graphPlotIn.plottingSize,
                                                             graphPlotIn.plotColour,
                                                             graphPlotIn.lineStyle,
-                                                            tempPolyline            );
+                                                            graphPlotIn.arrDataPoints   );
 
                 addGraphicObject( graphicLinePlot );
-
-                FreeAndNil( tempPolyline );
             end;
 
         procedure TGraphPlotsList.addScatterPlot(const graphPlotIn : TGraphPlotData);
@@ -73,6 +71,9 @@ implementation
 
                     EGraphPlotType.gpScatter:
                         addScatterPlot( graphPlotIn );
+
+                    EGraphPlotType.gpMarkerLinePlot:
+                        ;asdf
 
                     EGraphPlotType.gpFuntion:
                         addFunction( graphPlotIn );
