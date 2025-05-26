@@ -26,6 +26,13 @@ object Form2: TForm2
     ShowCaption = False
     ShowHint = True
     TabOrder = 0
+    GraphTitle = 'Displacement vs Time'
+    XAxisLabel = 'Time'
+    XAxisUnits = 's'
+    YAxisLabel = 'Displ.'
+    YAxisUnits = 'm'
     OnUpdateGraphPlots = JDBGraphXY1UpdateGraphPlots
+    ExplicitLeft = -24
+    ExplicitTop = 56
   end
 end

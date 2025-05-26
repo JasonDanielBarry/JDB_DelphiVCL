@@ -14,8 +14,15 @@ interface
 
         TSingleVariableClassFunction = function(x : double) : double of object;
 
+        TGraphLabelData = record
+            graphTitle,
+            xAxisLabel, xAxisUnit,
+            yAxisLabel, yAxisUnit : string;
+        end;
+
         TGraphPlotData = record
             var
+                visible             : boolean;
                 plottingSize        : integer;
                 plotName            : string;
                 graphPlotType       : EGraphPlotType;
@@ -53,6 +60,7 @@ implementation
     //TGraphPlotData
         procedure TGraphPlotData.copyOther(const otherGraphPlotIn : TGraphPlotData);
             begin
+                self.visible            := otherGraphPlotIn.visible;
                 self.plottingSize       := otherGraphPlotIn.plottingSize;
                 self.plotName           := otherGraphPlotIn.plotName;
                 self.graphPlotType      := otherGraphPlotIn.graphPlotType;
@@ -66,8 +74,14 @@ implementation
     //TGraphXYMap
         //private
             procedure TGraphXYMap.addPlotToMap(const graphPlotIn : TGraphPlotData);
+                var
+                    graphPlotCopy : TGraphPlotData;
                 begin
-                    AddOrSetValue( graphPlotIn.plotName, graphPlotIn );
+                    graphPlotCopy.copyOther( graphPlotIn );
+
+                    graphPlotCopy.visible := True;
+
+                    AddOrSetValue( graphPlotCopy.plotName, graphPlotCopy );
                 end;
 
         //public

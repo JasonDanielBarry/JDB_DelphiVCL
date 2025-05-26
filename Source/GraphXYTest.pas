@@ -49,7 +49,7 @@ begin
 
     SetLength( arrPoints1, POINT_COUNT + 1 );
     SetLength( arrPoints2, POINT_COUNT + 1 );
-    SetLength( arrPoints3, POINT_COUNT div 5 + 1 );
+    SetLength( arrPoints3, POINT_COUNT div 50 + 1 );
     SetLength( arrPoints4, POINT_COUNT div 5 + 1 );
 
     for i := 0 to POINT_COUNT do
@@ -65,23 +65,24 @@ begin
             if ( (i mod 5) = 0 ) then
                 begin
                     Randomize();
+
                     y := y + 5 * Random() - 2.5 + 10;
-
                     arrPoints4[i div 5].setPoint( x, y );
-
-                    y := -0.1 * power( x, 2 );
-                    arrPoints3[i div 5].setPoint( x, y );
                 end;
 
-
+            if ( (i mod 50) = 0 ) then
+                begin
+                    y := -0.1 * power( x, 2 );
+                    arrPoints3[i div 50].setPoint( x, y );
+                end;
         end;
 
+    AGraphXYMap.addLinePlot( 'Trig Curve', arrPoints1, False, 3 );
+    AGraphXYMap.addLinePlot( 'Pos Parab', arrPoints2, False, 4, clBlue, TPenStyle.psDashDotDot );
+    AGraphXYMap.addLinePlot( 'Neg Parab', arrPoints3, True, 5, clRed, TPenStyle.psDash );
+    AGraphXYMap.addScatterPlot( 'Scatter Pabab', arrPoints4 );
 
-    AGraphXYMap.addLinePlot( 'Series 2', arrPoints2, False, 4, clBlue, TPenStyle.psDashDotDot );
-    AGraphXYMap.addLinePlot( 'Series 3', arrPoints3, True, 5, clRed, TPenStyle.psDash );
-    AGraphXYMap.addScatterPlot( 'Scatter 1', arrPoints4 );
 
-    AGraphXYMap.addLinePlot( 'Series 1', arrPoints1, False, 3 );
 end;
 
 end.

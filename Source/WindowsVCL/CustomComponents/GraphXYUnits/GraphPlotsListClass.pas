@@ -15,6 +15,7 @@ interface
             private
                 procedure addLinePlot(const graphPlotIn : TGraphPlotData);
                 procedure addScatterPlot(const graphPlotIn : TGraphPlotData);
+                procedure addMarkedLinePlot(const graphPlotIn : TGraphPlotData);
                 procedure addFunction(const graphPlotIn : TGraphPlotData);
                 procedure addClassFunction(const graphPlotIn : TGraphPlotData);
             public
@@ -27,12 +28,9 @@ implementation
     //private
         procedure TGraphPlotsList.addLinePlot(const graphPlotIn : TGraphPlotData);
             var
-                showPlotPoints  : boolean;
                 graphicLinePlot : TGraphicLinePlot;
             begin
-                showPlotPoints := graphPlotIn.graphPlotType = EGraphPlotType.gpMarkerLinePlot;
-
-                graphicLinePlot := TGraphicLinePlot.create( showPlotPoints,
+                graphicLinePlot := TGraphicLinePlot.create( False,
                                                             graphPlotIn.plottingSize,
                                                             graphPlotIn.plotColour,
                                                             graphPlotIn.lineStyle,
@@ -52,6 +50,19 @@ implementation
                 addGraphicObject( graphicScatterPlot );
             end;
 
+        procedure TGraphPlotsList.addMarkedLinePlot(const graphPlotIn : TGraphPlotData);
+            var
+                graphicMarkedLinePlot : TGraphicLinePlot;
+            begin
+                graphicMarkedLinePlot := TGraphicLinePlot.create(   True,
+                                                                    graphPlotIn.plottingSize,
+                                                                    graphPlotIn.plotColour,
+                                                                    graphPlotIn.lineStyle,
+                                                                    graphPlotIn.arrDataPoints   );
+
+                addGraphicObject( graphicMarkedLinePlot );
+            end;
+
         procedure TGraphPlotsList.addFunction(const graphPlotIn : TGraphPlotData);
             begin
 
@@ -65,6 +76,9 @@ implementation
     //public
         procedure TGraphPlotsList.addGraphPlot(const graphPlotIn : TGraphPlotData);
             begin
+                if NOT( graphPlotIn.visible ) then
+                    exit();
+
                 case ( graphPlotIn.graphPlotType ) of
                     EGraphPlotType.gpLine:
                         addLinePlot( graphPlotIn );
@@ -73,7 +87,7 @@ implementation
                         addScatterPlot( graphPlotIn );
 
                     EGraphPlotType.gpMarkerLinePlot:
-                        ;asdf
+                        addMarkedLinePlot( graphPlotIn );
 
                     EGraphPlotType.gpFuntion:
                         addFunction( graphPlotIn );
