@@ -452,25 +452,13 @@ implementation
 
                 y := 15 - 1.0;
 
-                line := TGeomLine.create();
-
-                line.setStartPoint(0, 0);
-                line.setEndPoint(20, 0);
-
-                line.shift(0, y);
-                line.rotate( -10, line.getStartPoint() );
-
                 while (y > 1.0) do
                     begin
-                        graphicsListInOut.addLine( line, 16, TColors.Grey);
-                        graphicsListInOut.addLine( line, 4, TColors.Darkblue );
-
-                        line.shift(0, -1.5);
+                        graphicsListInOut.addRectangle( 20, 0.2, 0, y, True, 0, 0, -10, EScaleType.scDrawing, THorzRectAlign.Left, TVertRectAlign.Center, TColors.Grey );
+                        graphicsListInOut.addRectangle( 20, 0.025, 0, y, True, 0, 0, -10, EScaleType.scDrawing, THorzRectAlign.Left, TVertRectAlign.Center, TColors.Darkblue );
 
                         y := y - 1.5;
                     end;
-
-                FreeAndNil( line );
             end;
 
             graphicsListInOut.setCurrentDrawingLayer('Wall');
