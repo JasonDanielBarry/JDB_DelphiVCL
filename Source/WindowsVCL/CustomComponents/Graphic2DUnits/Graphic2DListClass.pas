@@ -86,7 +86,7 @@ interface
                                             const   horizontalAlignmentIn   : THorzRectAlign = THorzRectAlign.Left;
                                             const   verticalAlignmentIn     : TVertRectAlign = TVertRectAlign.Top;
                                             const   textColourIn            : TColor = TColors.SysWindowText;
-                                            const   textFontStylesIn        : TFontStyles = []                          );
+                                            const   textFontStylesIn        : TFontStyles = []                      );
                     //groups
                         //arrow
                             procedure addArrow( const   arrowLengthIn,
