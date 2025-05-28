@@ -80,7 +80,7 @@ begin
     AGraphXYMap.addLinePlot( 'Trig Curve', arrPoints1, False, 3 );
     AGraphXYMap.addLinePlot( 'Pos Parab', arrPoints2, False, 4, clBlue, TPenStyle.psDashDotDot );
     AGraphXYMap.addLinePlot( 'Neg Parab', arrPoints3, True, 5, clRed, TPenStyle.psDash );
-    AGraphXYMap.addScatterPlot( 'Scatter Pabab', arrPoints4 );
+    AGraphXYMap.addScatterPlot( 'Scatter Parab', arrPoints4 );
 
 
 end;

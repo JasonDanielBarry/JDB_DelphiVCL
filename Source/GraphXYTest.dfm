@@ -2,8 +2,8 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'Form2'
-  ClientHeight = 762
-  ClientWidth = 1506
+  ClientHeight = 787
+  ClientWidth = 1660
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,8 +15,8 @@ object Form2: TForm2
   object JDBGraphXY1: TJDBGraphXY
     Left = 0
     Top = 0
-    Width = 1506
-    Height = 762
+    Width = 1660
+    Height = 787
     Align = alClient
     BevelEdges = []
     BevelOuter = bvNone
@@ -32,7 +32,5 @@ object Form2: TForm2
     YAxisLabel = 'Displ.'
     YAxisUnits = 'm'
     OnUpdateGraphPlots = JDBGraphXY1UpdateGraphPlots
-    ExplicitLeft = -24
-    ExplicitTop = 56
   end
 end

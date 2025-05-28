@@ -26,7 +26,7 @@ uses
             LabelTitle: TLabel;
             LabelYAxis: TLabel;
             LabelXAxis: TLabel;
-            PageControl1: TPageControl;
+            PageControlSettings: TPageControl;
             TabSheetGraph: TTabSheet;
             TabSheetGrid: TTabSheet;
             ComboBoxPlotNames: TComboBox;
@@ -42,13 +42,16 @@ uses
             LabelGridLineVisibility: TLabel;
             CheckBoxMajorLines: TCheckBox;
             CheckBoxMinorLines: TCheckBox;
+            ButtonShowSettings: TButton;
             //events
                 procedure FrameResize(Sender: TObject);
                 procedure ComboBoxPlotNamesChange(Sender: TObject);
                 procedure CheckBoxShowSelectedPlotClick(Sender: TObject);
                 procedure CheckBoxGridVisibilityClick(Sender: TObject);
+                procedure ButtonShowSettingsClick(Sender: TObject);
             private
                 var
+                    mouseTrackingActive     : boolean;
                     graphLabels             : TGraphLabelData;
                     selectedGraphPlot       : TGraphPlotData;
                     graphPlotsMap           : TGraphXYMap;
@@ -100,6 +103,15 @@ implementation
                 replot();
             end;
 
+        procedure TCustomGraphXY.ButtonShowSettingsClick(Sender: TObject);
+            begin
+                PageControlSettings.Visible := NOT( PageControlSettings.Visible );
+
+                replot();
+
+                self.Refresh();
+            end;
+
         procedure TCustomGraphXY.CheckBoxGridVisibilityClick(Sender: TObject);
             begin
                 collectGridSettings();
@@ -113,7 +125,13 @@ implementation
                 selectedPlotName := ComboBoxPlotNames.Text;
 
                 if NOT( graphPlotsMap.TryGetValue( selectedPlotName, localSelectedPlot ) ) then
-                    exit();
+                    begin
+                        mouseTrackingActive := False;
+                        sendGraphPlotsToDrawer();
+                        exit();
+                    end;
+
+                mouseTrackingActive := True;
 
                 selectedGraphPlot.copyOther( localSelectedPlot );
 
@@ -215,7 +233,7 @@ implementation
                                 graphPlotsList.addGraphPlot( tempGraphPlotItem.Value );
 
                         //collect mouse point tracker
-                            if ( selectedGraphPlot.visible AND ( 2 < length( selectedGraphPlot.arrDataPoints ) ) ) then
+                            if ( mouseTrackingActive AND selectedGraphPlot.visible AND ( 2 < length( selectedGraphPlot.arrDataPoints ) ) ) then
                                 begin
                                     continuousTracking := ( selectedGraphPlot.graphPlotType <> EGraphPlotType.gpScatter );
 
@@ -262,12 +280,17 @@ implementation
                 begin
                     inherited Create( AOwner );
 
+                    ButtonShowSettings.top := 0;
+                    ButtonShowSettings.left := self.Width - ButtonShowSettings.Width;
+
                     PBGraphXY.setGridEnabled( True );
 
                     graphPlotsMap := TGraphXYMap.Create();
 
                     PBGraphXY.GraphicDrawer.setDrawingSpaceRatioEnabled( False );
                     PBGraphXY.GraphicDrawer.setGeometryBorderPercentage( 0 );
+
+                    PageControlSettings.ActivePageIndex := 0;
 
                     collectGridSettings();
                 end;
@@ -367,10 +390,15 @@ implementation
 
                         onUpdateGraphPlotsEvent( self, graphPlotsMap );
 
+                    //populate the combo box with the plot names
                         ComboBoxPlotNames.Clear();
+
+                        ComboBoxPlotNames.Items.Add( '<none>' );
 
                         for plotName in graphPlotsMap.Keys do
                             ComboBoxPlotNames.Items.Add( plotName );
+
+                        ComboBoxPlotNames.ItemIndex := 0;
 
                     //send plots to drawer
                         sendGraphPlotsToDrawer();

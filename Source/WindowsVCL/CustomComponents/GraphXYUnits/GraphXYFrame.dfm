@@ -5,60 +5,69 @@ object CustomGraphXY: TCustomGraphXY
   Height = 843
   TabOrder = 0
   OnResize = FrameResize
+  DesignSize = (
+    1766
+    843)
   object LabelTitle: TLabel
     AlignWithMargins = True
-    Left = 1
-    Top = 1
-    Width = 1764
+    Left = 2
+    Top = 2
+    Width = 1762
     Height = 15
-    Margins.Left = 1
-    Margins.Top = 1
-    Margins.Right = 1
-    Margins.Bottom = 1
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Align = alTop
     Alignment = taCenter
     Caption = 'Title'
     Layout = tlCenter
+    ExplicitLeft = 1
+    ExplicitTop = 1
     ExplicitWidth = 23
   end
   object LabelXAxis: TLabel
     AlignWithMargins = True
-    Left = 1
-    Top = 827
-    Width = 1764
+    Left = 2
+    Top = 826
+    Width = 1762
     Height = 15
-    Margins.Left = 1
-    Margins.Top = 1
-    Margins.Right = 1
-    Margins.Bottom = 1
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Align = alBottom
     Alignment = taCenter
     Caption = 'X-Axis'
     Layout = tlCenter
+    ExplicitLeft = 1
+    ExplicitTop = 827
     ExplicitWidth = 33
   end
   object LabelYAxis: TLabel
     AlignWithMargins = True
-    Left = 1
-    Top = 18
+    Left = 2
+    Top = 21
     Width = 33
-    Height = 807
-    Margins.Left = 1
-    Margins.Top = 1
-    Margins.Right = 1
-    Margins.Bottom = 1
+    Height = 801
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Align = alLeft
     Alignment = taCenter
     Caption = 'Y-Axis'
     Layout = tlCenter
+    ExplicitLeft = 1
+    ExplicitTop = 18
     ExplicitHeight = 15
   end
   object PBGraphXY: TPaintBox
     AlignWithMargins = True
-    Left = 36
-    Top = 18
-    Width = 1477
-    Height = 807
+    Left = 38
+    Top = 20
+    Width = 1473
+    Height = 803
     Margins.Left = 1
     Margins.Top = 1
     Margins.Right = 1
@@ -69,20 +78,24 @@ object CustomGraphXY: TCustomGraphXY
     ExplicitWidth = 105
     ExplicitHeight = 105
   end
-  object PageControl1: TPageControl
+  object PageControlSettings: TPageControl
     AlignWithMargins = True
-    Left = 1515
-    Top = 18
+    Left = 1514
+    Top = 21
     Width = 250
-    Height = 807
-    Margins.Left = 1
-    Margins.Top = 1
-    Margins.Right = 1
-    Margins.Bottom = 1
+    Height = 801
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     ActivePage = TabSheetGrid
     Align = alRight
     MultiLine = True
     TabOrder = 0
+    Visible = False
+    ExplicitLeft = 1515
+    ExplicitTop = 18
+    ExplicitHeight = 807
     object TabSheetGraph: TTabSheet
       Caption = 'Graph'
       object ComboBoxPlotNames: TComboBox
@@ -123,7 +136,7 @@ object CustomGraphXY: TCustomGraphXY
         Left = 0
         Top = 0
         Width = 242
-        Height = 225
+        Height = 210
         Align = alTop
         Caption = 'Grid Element Visibility'
         TabOrder = 0
@@ -131,7 +144,7 @@ object CustomGraphXY: TCustomGraphXY
           Left = 2
           Top = 17
           Width = 238
-          Height = 206
+          Height = 191
           Align = alClient
           BevelOuter = bvNone
           ColumnCollection = <
@@ -214,14 +227,13 @@ object CustomGraphXY: TCustomGraphXY
               Value = 11.111111111111100000
             end>
           TabOrder = 0
-          ExplicitTop = 34
-          ExplicitHeight = 189
+          ExplicitHeight = 206
           object LabelAxesVisibility: TLabel
             AlignWithMargins = True
             Left = 5
             Top = 1
             Width = 232
-            Height = 21
+            Height = 19
             Margins.Left = 5
             Margins.Top = 1
             Margins.Right = 1
@@ -235,9 +247,9 @@ object CustomGraphXY: TCustomGraphXY
           object CheckBoxXAxis: TCheckBox
             AlignWithMargins = True
             Left = 20
-            Top = 24
+            Top = 22
             Width = 217
-            Height = 21
+            Height = 19
             Margins.Left = 20
             Margins.Top = 1
             Margins.Right = 1
@@ -248,15 +260,15 @@ object CustomGraphXY: TCustomGraphXY
             State = cbChecked
             TabOrder = 0
             OnClick = CheckBoxGridVisibilityClick
-            ExplicitTop = 22
-            ExplicitHeight = 19
+            ExplicitTop = 24
+            ExplicitHeight = 21
           end
           object CheckBoxYAxis: TCheckBox
             AlignWithMargins = True
             Left = 20
-            Top = 47
+            Top = 43
             Width = 217
-            Height = 21
+            Height = 20
             Margins.Left = 20
             Margins.Top = 1
             Margins.Right = 1
@@ -267,15 +279,15 @@ object CustomGraphXY: TCustomGraphXY
             State = cbChecked
             TabOrder = 1
             OnClick = CheckBoxGridVisibilityClick
-            ExplicitTop = 43
-            ExplicitHeight = 19
+            ExplicitTop = 47
+            ExplicitHeight = 21
           end
           object LabelAxisValuesVisibility: TLabel
             AlignWithMargins = True
             Left = 5
-            Top = 70
+            Top = 65
             Width = 232
-            Height = 21
+            Height = 19
             Margins.Left = 5
             Margins.Top = 1
             Margins.Right = 1
@@ -283,16 +295,16 @@ object CustomGraphXY: TCustomGraphXY
             Align = alClient
             Caption = 'Axis Values'
             Layout = tlCenter
-            ExplicitTop = 64
+            ExplicitTop = 70
             ExplicitWidth = 57
             ExplicitHeight = 15
           end
           object CheckBoxXAxisValues: TCheckBox
             AlignWithMargins = True
             Left = 20
-            Top = 93
+            Top = 86
             Width = 217
-            Height = 20
+            Height = 19
             Margins.Left = 20
             Margins.Top = 1
             Margins.Right = 1
@@ -303,15 +315,15 @@ object CustomGraphXY: TCustomGraphXY
             State = cbChecked
             TabOrder = 2
             OnClick = CheckBoxGridVisibilityClick
-            ExplicitTop = 85
-            ExplicitHeight = 19
+            ExplicitTop = 93
+            ExplicitHeight = 20
           end
           object CheckBoxYAxisValues: TCheckBox
             AlignWithMargins = True
             Left = 20
-            Top = 115
+            Top = 107
             Width = 217
-            Height = 21
+            Height = 19
             Margins.Left = 20
             Margins.Top = 1
             Margins.Right = 1
@@ -322,15 +334,15 @@ object CustomGraphXY: TCustomGraphXY
             State = cbChecked
             TabOrder = 3
             OnClick = CheckBoxGridVisibilityClick
-            ExplicitTop = 106
-            ExplicitHeight = 19
+            ExplicitTop = 115
+            ExplicitHeight = 21
           end
           object LabelGridLineVisibility: TLabel
             AlignWithMargins = True
             Left = 5
-            Top = 138
+            Top = 128
             Width = 232
-            Height = 21
+            Height = 20
             Margins.Left = 5
             Margins.Top = 1
             Margins.Right = 1
@@ -338,16 +350,16 @@ object CustomGraphXY: TCustomGraphXY
             Align = alClient
             Caption = 'Grid Lines'
             Layout = tlCenter
-            ExplicitTop = 127
+            ExplicitTop = 138
             ExplicitWidth = 52
             ExplicitHeight = 15
           end
           object CheckBoxMajorLines: TCheckBox
             AlignWithMargins = True
             Left = 20
-            Top = 161
+            Top = 150
             Width = 217
-            Height = 21
+            Height = 19
             Margins.Left = 20
             Margins.Top = 1
             Margins.Right = 1
@@ -358,15 +370,15 @@ object CustomGraphXY: TCustomGraphXY
             State = cbChecked
             TabOrder = 4
             OnClick = CheckBoxGridVisibilityClick
-            ExplicitTop = 148
-            ExplicitHeight = 19
+            ExplicitTop = 161
+            ExplicitHeight = 21
           end
           object CheckBoxMinorLines: TCheckBox
             AlignWithMargins = True
             Left = 20
-            Top = 184
+            Top = 171
             Width = 217
-            Height = 21
+            Height = 19
             Margins.Left = 20
             Margins.Top = 1
             Margins.Right = 1
@@ -377,11 +389,21 @@ object CustomGraphXY: TCustomGraphXY
             State = cbChecked
             TabOrder = 5
             OnClick = CheckBoxGridVisibilityClick
-            ExplicitTop = 169
-            ExplicitHeight = 19
+            ExplicitTop = 184
+            ExplicitHeight = 21
           end
         end
       end
     end
+  end
+  object ButtonShowSettings: TButton
+    Left = 1738
+    Top = 3
+    Width = 25
+    Height = 17
+    Anchors = [akTop, akRight]
+    Caption = 'S'
+    TabOrder = 1
+    OnClick = ButtonShowSettingsClick
   end
 end
