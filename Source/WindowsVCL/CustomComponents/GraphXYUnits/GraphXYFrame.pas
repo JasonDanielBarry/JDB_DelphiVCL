@@ -31,17 +31,30 @@ uses
             TabSheetGrid: TTabSheet;
             ComboBoxPlotNames: TComboBox;
             CheckBoxShowSelectedPlot: TCheckBox;
+            GroupBoxGridElementVisibility: TGroupBox;
+            GridPanelGridElementVisibility: TGridPanel;
+            LabelAxesVisibility: TLabel;
+            CheckBoxXAxis: TCheckBox;
+            CheckBoxYAxis: TCheckBox;
+            LabelAxisValuesVisibility: TLabel;
+            CheckBoxXAxisValues: TCheckBox;
+            CheckBoxYAxisValues: TCheckBox;
+            LabelGridLineVisibility: TLabel;
+            CheckBoxMajorLines: TCheckBox;
+            CheckBoxMinorLines: TCheckBox;
             //events
                 procedure FrameResize(Sender: TObject);
                 procedure ComboBoxPlotNamesChange(Sender: TObject);
                 procedure CheckBoxShowSelectedPlotClick(Sender: TObject);
+                procedure CheckBoxGridVisibilityClick(Sender: TObject);
             private
                 var
                     graphLabels             : TGraphLabelData;
                     selectedGraphPlot       : TGraphPlotData;
-                    gridVisibilitySettings  : TGridVisibilitySettings;
                     graphPlotsMap           : TGraphXYMap;
                     onUpdateGraphPlotsEvent : TUpdateGraphPlotsEvent;
+                //set grid elements visibility to drawer
+                    procedure collectGridSettings();
                 //write axis labels
                     procedure writeXAxisLabel();
                     procedure writeYAxisLabel();
@@ -87,6 +100,11 @@ implementation
                 replot();
             end;
 
+        procedure TCustomGraphXY.CheckBoxGridVisibilityClick(Sender: TObject);
+            begin
+                collectGridSettings();
+            end;
+
         procedure TCustomGraphXY.ComboBoxPlotNamesChange(Sender: TObject);
             var
                 selectedPlotName    : string;
@@ -121,6 +139,25 @@ implementation
             end;
 
     //private
+        //set grid elements visibility to drawer
+            procedure TCustomGraphXY.collectGridSettings();
+                var
+                    gridSettings : TGraphicGridSettings;
+                begin
+                    gridSettings.setValues(
+                                                CheckBoxXAxisValues.Checked,
+                                                CheckBoxYAxisValues.Checked,
+                                                CheckBoxXAxis.Checked,
+                                                CheckBoxYAxis.Checked,
+                                                CheckBoxMajorLines.Checked,
+                                                CheckBoxMinorLines.Checked
+                                          );
+
+                    PBGraphXY.setGridSettings( gridSettings );
+
+                    replot();
+                end;
+
         //write axis labels
             procedure TCustomGraphXY.writeXAxisLabel();
                 var
@@ -196,7 +233,7 @@ implementation
                         FreeAndNil( graphPlotsList );
 
                     //grid settings
-                        PBGraphXY.setGridElementsVisiblity( gridVisibilitySettings );
+                        collectGridSettings();
 
                     replot();
                 end;
@@ -226,14 +263,13 @@ implementation
                     inherited Create( AOwner );
 
                     PBGraphXY.setGridEnabled( True );
-                    gridVisibilitySettings.setValues( True, True, True, True );
 
                     graphPlotsMap := TGraphXYMap.Create();
 
                     PBGraphXY.GraphicDrawer.setDrawingSpaceRatioEnabled( False );
                     PBGraphXY.GraphicDrawer.setGeometryBorderPercentage( 0 );
 
-                    PBGraphXY.setGridElementsVisiblity( gridVisibilitySettings );
+                    collectGridSettings();
                 end;
 
         //destructor
