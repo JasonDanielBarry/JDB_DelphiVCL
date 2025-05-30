@@ -207,6 +207,32 @@ implementation
 
                     graphicsListInOut.addArc( 100, -125, 50, 50, 0, -90, False, 5 );
                     graphicsListInOut.addArc( 100, -125, 50, 50, 350, -10 );
+
+                //dimension line
+                    graphicsListInOut.setCurrentDrawingLayer('Dimension line');
+
+                    line := TGeomLine.create();
+
+                    line.setStartPoint( -300, -100 );
+                    line.setEndPoint( -100, -300 );
+
+                    graphicsListInOut.addDimensionLine( line );
+
+                    graphicsListInOut.addDimensionLine( line, 25 );
+
+                    graphicsListInOut.addDimensionLine( line, -25, 'Dimension line', TColors.Darkred );
+
+                    line.setStartPoint( -100, -300 );
+                    line.setEndPoint( -300, -300 );
+
+                    graphicsListInOut.addDimensionLine( line );
+
+                    line.setStartPoint( -300, -300 );
+                    line.setEndPoint( -300, -100 );
+
+                    graphicsListInOut.addDimensionLine( line );
+
+                    FreeAndNil( line );
             end;
 
         procedure TForm1.XYGraphs(var graphicsListInOut : TGraphic2DList);

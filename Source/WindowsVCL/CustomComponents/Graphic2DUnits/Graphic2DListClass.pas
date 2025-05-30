@@ -15,7 +15,7 @@ interface
             GraphicArcClass, GraphicEllipseClass, GraphicGeometryClass,
             GraphicLineClass, GraphicPolylineClass, GraphicPolygonClass,
             GraphicRectangleClass, GraphicTextClass, GraphicArrowClass,
-            GraphicArrowGroupClass,
+            GraphicArrowGroupClass, GraphicDimensionClass,
             GraphicObjectListBaseClass
             ;
 
@@ -121,6 +121,11 @@ interface
                                                         const   fillColourIn            : TColor = TColors.Null;
                                                         const   lineColourIn            : TColor = TColors.SysWindowText;
                                                         const   lineStyleIn             : TPenStyle = TPenStyle.psSolid                         ); overload;
+                        //dimension
+                            procedure addDimensionLine( const dimensionLineIn   : TGeomLine;
+                                                        const dimensionOffsetIn : double = 0;
+                                                        const customDimTextIn   : string = '';
+                                                        const colourIn          : TColor = TColors.SysWindowText );
         end;
 
 implementation
@@ -394,6 +399,19 @@ implementation
                                                                                 arrowGroupPolylineIn    );
 
                             addGraphicObject( newGraphicArrowGroup );
+                        end;
+
+                //dimension
+                    procedure TGraphic2DList.addDimensionLine(  const dimensionLineIn   : TGeomLine;
+                                                                const dimensionOffsetIn : double = 0;
+                                                                const customDimTextIn   : string = '';
+                                                                const colourIn          : TColor = TColors.SysWindowText );
+                        var
+                            newGraphicDimension : TGraphicDimension;
+                        begin
+                            newGraphicDimension := TGraphicDimension.create( dimensionOffsetIn, customDimTextIn, colourIn, dimensionLineIn );
+
+                            addGraphicObject( newGraphicDimension );
                         end;
 
 end.

@@ -459,7 +459,7 @@ implementation
 
                     tableHeight := max( GridPanelDirectionalPan.Height, CheckListBoxLayerTable.ItemHeight * CheckListBoxLayerTable.Count + round(5 * self.ScaleFactor) );
 
-                    tableHeight := min( tableHeight, CheckListBoxLayerTable.ItemHeight * 10 + round(5 * self.ScaleFactor) );
+                    tableHeight := min( tableHeight, CheckListBoxLayerTable.ItemHeight * 15 + round(5 * self.ScaleFactor) );
 
                     CheckListBoxLayerTable.Height := tableHeight;
                 end;
