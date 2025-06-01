@@ -15,9 +15,14 @@ interface
         TSingleVariableClassFunction = function(x : double) : double of object;
 
         TGraphLabelData = record
-            graphTitle,
-            xAxisLabel, xAxisUnit,
-            yAxisLabel, yAxisUnit : string;
+            private
+                function writeAxisLabel(const labelIn, unitsIn : string) : string;
+            public
+                graphTitle,
+                xAxisLabel, xAxisUnit,
+                yAxisLabel, yAxisUnit : string;
+                function writeXAxisLabel() : string;
+                function writeYAxisLabel() : string;
         end;
 
         TGraphPlotData = record
@@ -56,6 +61,30 @@ interface
         TUpdateGraphPlotsEvent = procedure(ASender : TObject; var AGraphXYMap : TGraphXYMap) of object;
 
 implementation
+
+    //TGraphLabelData
+        //private
+            function TGraphLabelData.writeAxisLabel(const labelIn, unitsIn : string) : string;
+                var
+                    unitsString : string;
+                begin
+                    if ( unitsIn = '' ) then
+                        exit( labelIn );
+
+                    unitsString := '(' + unitsIn + ')';
+                    result := labelIn + ' ' + unitsString;
+                end;
+
+        //public
+            function TGraphLabelData.writeXAxisLabel() : string;
+                begin
+                    result := writeAxisLabel( xAxisLabel, xAxisUnit );
+                end;
+
+            function TGraphLabelData.writeYAxisLabel() : string;
+                begin
+                    result := writeAxisLabel( yAxisLabel, yAxisUnit );
+                end;
 
     //TGraphPlotData
         procedure TGraphPlotData.copyOther(const otherGraphPlotIn : TGraphPlotData);

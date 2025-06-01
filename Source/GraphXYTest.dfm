@@ -32,5 +32,7 @@ object Form2: TForm2
     YAxisLabel = 'Displ.'
     YAxisUnits = 'm'
     OnUpdateGraphPlots = JDBGraphXY1UpdateGraphPlots
+    ExplicitLeft = 96
+    ExplicitTop = 120
   end
 end

@@ -4,6 +4,7 @@ interface
 
 uses
     Winapi.Windows, Winapi.Messages,
+    Winapi.D2D1, Vcl.Direct2D,
     System.SysUtils, System.Variants, System.Classes, System.Generics.Collections, System.UITypes,
     Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
 
@@ -65,6 +66,9 @@ uses
                     procedure setGraphBoundaries(const xMinIn, xMaxIn, yMinIn, yMaxIn : double);
                 //send graph plots to drawer
                     procedure sendGraphPlotsToDrawer();
+                //post draw event
+                    procedure postDrawGraphEvent(   const canvasWidthIn, canvasHeightIn : integer;
+                                                    const D2DCanvasIn                   : TDirect2DCanvas   );
             protected
                 //process windows messages
                     procedure wndProc(var messageInOut : TMessage); override;
@@ -178,31 +182,13 @@ implementation
 
         //write axis labels
             procedure TCustomGraphXY.writeXAxisLabel();
-                var
-                    unitsString : string;
                 begin
-                    if ( graphLabels.xAxisUnit = '' ) then
-                        LabelXAxis.Caption := graphLabels.xAxisLabel
-                    else
-                        begin
-                            unitsString := '(' + graphLabels.xAxisUnit + ')';
-
-                            LabelXAxis.Caption := graphLabels.xAxisLabel + ' ' + unitsString;
-                        end;
+                    LabelXAxis.Caption := graphLabels.writeXAxisLabel();
                 end;
 
             procedure TCustomGraphXY.writeYAxisLabel();
-                var
-                    unitsString : string;
                 begin
-                    if ( graphLabels.yAxisLabel = '' ) then
-                        LabelYAxis.Caption := graphLabels.yAxisLabel
-                    else
-                        begin
-                            unitsString := '(' + graphLabels.yAxisUnit + ')';
-
-                            LabelYAxis.Caption := graphLabels.yAxisLabel + sLineBreak + unitsString;
-                        end;
+                    LabelYAxis.Caption := graphLabels.writeYAxisLabel();
                 end;
 
         //set graph boundaries
@@ -256,6 +242,13 @@ implementation
                     replot();
                 end;
 
+        //post draw event
+            procedure TCustomGraphXY.postDrawGraphEvent(const canvasWidthIn, canvasHeightIn : integer;
+                                                        const D2DCanvasIn                   : TDirect2DCanvas);
+                begin
+
+                end;
+
     //protected
         //process windows messages
             procedure TCustomGraphXY.wndProc(var messageInOut : TMessage);
@@ -283,12 +276,12 @@ implementation
                     ButtonShowSettings.top := 0;
                     ButtonShowSettings.left := self.Width - ButtonShowSettings.Width;
 
-                    PBGraphXY.setGridEnabled( True );
-
                     graphPlotsMap := TGraphXYMap.Create();
 
+                    PBGraphXY.setGridEnabled( True );
                     PBGraphXY.GraphicDrawer.setDrawingSpaceRatioEnabled( False );
                     PBGraphXY.GraphicDrawer.setGeometryBorderPercentage( 0 );
+                    PBGraphXY.GraphicDrawer.setOnPostGraphicDrawEvent( postDrawGraphEvent );
 
                     PageControlSettings.ActivePageIndex := 0;
 
