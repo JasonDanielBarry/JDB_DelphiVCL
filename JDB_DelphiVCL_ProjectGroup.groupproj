@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{4BA02DBE-6011-4B1F-9A35-AFF71B40A29C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\JDB_Mathematics\JDB_Mathematics.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\JDB_Graphics\JDB_Graphics.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="JDB_DelphiVCL.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="JDB_Mathematics">
+        <MSBuild Projects="..\JDB_Mathematics\JDB_Mathematics.dproj"/>
+    </Target>
+    <Target Name="JDB_Mathematics:Clean">
+        <MSBuild Projects="..\JDB_Mathematics\JDB_Mathematics.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="JDB_Mathematics:Make">
+        <MSBuild Projects="..\JDB_Mathematics\JDB_Mathematics.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="JDB_Graphics">
+        <MSBuild Projects="..\JDB_Graphics\JDB_Graphics.dproj"/>
+    </Target>
+    <Target Name="JDB_Graphics:Clean">
+        <MSBuild Projects="..\JDB_Graphics\JDB_Graphics.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="JDB_Graphics:Make">
+        <MSBuild Projects="..\JDB_Graphics\JDB_Graphics.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="JDB_DelphiVCL">
+        <MSBuild Projects="JDB_DelphiVCL.dproj"/>
+    </Target>
+    <Target Name="JDB_DelphiVCL:Clean">
+        <MSBuild Projects="JDB_DelphiVCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="JDB_DelphiVCL:Make">
+        <MSBuild Projects="JDB_DelphiVCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="JDB_Mathematics;JDB_Graphics;JDB_DelphiVCL"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="JDB_Mathematics:Clean;JDB_Graphics:Clean;JDB_DelphiVCL:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="JDB_Mathematics:Make;JDB_Graphics:Make;JDB_DelphiVCL:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
