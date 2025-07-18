@@ -11,16 +11,16 @@ interface
             GeomLineClass, GeomPolyLineClass, GeomPolygonClass,
             DrawingAxisConversionClass,
             GraphicDrawingTypes,
-            GraphicObjectBaseClass,
+            GraphicEntityBaseClass,
             GraphicArcClass, GraphicEllipseClass, GraphicGeometryClass,
             GraphicLineClass, GraphicPolylineClass, GraphicPolygonClass,
             GraphicRectangleClass, GraphicTextClass, GraphicArrowClass,
             GraphicArrowGroupClass, GraphicDimensionClass,
-            GraphicObjectListBaseClass
+            GraphicEntityListBaseClass
             ;
 
     type
-        TGraphic2DList = class(TGraphicObjectListBase)
+        TGraphic2DList = class(TGraphicEntityListBase)
             public
                 //add different drawing graphic objects
                     //arc
@@ -161,7 +161,7 @@ implementation
                                                                 lineStyleIn,
                                                                 centrePoint                 );
 
-                        addGraphicObject( newGraphicArc );
+                        addGraphicEntity( newGraphicArc );
                     end;
 
             //ellipse
@@ -194,7 +194,7 @@ implementation
                                                                         lineStyleIn,
                                                                         handlePoint                 );
 
-                        addGraphicObject( newGraphicEllipse );
+                        addGraphicEntity( newGraphicEllipse );
                     end;
 
             //geometry
@@ -211,7 +211,7 @@ implementation
                                                                         styleIn,
                                                                         lineIn          );
 
-                            addGraphicObject( newGraphicGeometry );
+                            addGraphicEntity( newGraphicGeometry );
                         end;
 
                 //polyline
@@ -227,7 +227,7 @@ implementation
                                                                             styleIn,
                                                                             polylineIn      );
 
-                            addGraphicObject( newGraphicGeometry );
+                            addGraphicEntity( newGraphicGeometry );
                         end;
 
                 //polygon
@@ -247,7 +247,7 @@ implementation
                                                                             lineStyleIn,
                                                                             polygonIn       );
 
-                            addGraphicObject( newGraphicGeometry );
+                            addGraphicEntity( newGraphicGeometry );
                         end;
 
             //rectanlge
@@ -282,7 +282,7 @@ implementation
                                                                             lineStyleIn,
                                                                             handlePoint             );
 
-                        addGraphicObject( newGraphicRectangle );
+                        addGraphicEntity( newGraphicRectangle );
                     end;
 
             //text
@@ -316,7 +316,7 @@ implementation
                                                                 textFontStylesIn,
                                                                 handlePoint             );
 
-                        addGraphicObject( newGraphicText );
+                        addGraphicEntity( newGraphicText );
                     end;
 
             //groups
@@ -343,7 +343,7 @@ implementation
                                                                         arrowOriginIn,
                                                                         arrowOriginPointIn  );
 
-                            addGraphicObject( newGraphicArrow );
+                            addGraphicEntity( newGraphicArrow );
                         end;
 
                 //arrow group
@@ -371,7 +371,7 @@ implementation
                                                                                 arrowGroupDirectionIn,
                                                                                 arrowGroupLineIn        );
 
-                            addGraphicObject( newGraphicArrowGroup );
+                            addGraphicEntity( newGraphicArrowGroup );
                         end;
 
                     procedure TGraphic2DList.addArrowGroup( const   arrowLengthIn           : double;
@@ -398,7 +398,7 @@ implementation
                                                                                 arrowGroupDirectionIn,
                                                                                 arrowGroupPolylineIn    );
 
-                            addGraphicObject( newGraphicArrowGroup );
+                            addGraphicEntity( newGraphicArrowGroup );
                         end;
 
                 //dimension
@@ -411,7 +411,7 @@ implementation
                         begin
                             newGraphicDimension := TGraphicDimension.create( dimensionOffsetIn, customDimTextIn, colourIn, dimensionLineIn );
 
-                            addGraphicObject( newGraphicDimension );
+                            addGraphicEntity( newGraphicDimension );
                         end;
 
 end.

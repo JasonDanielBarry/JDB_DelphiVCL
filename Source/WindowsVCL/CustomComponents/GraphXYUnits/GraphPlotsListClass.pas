@@ -8,10 +8,10 @@ interface
         GraphicScatterPlotClass,
         GraphicMousePointTrackerClass,
         GraphXYTypes,
-        GraphicObjectListBaseClass;
+        GraphicEntityListBaseClass;
 
     type
-        TGraphPlotsList = class(TGraphicObjectListBase)
+        TGraphPlotsList = class(TGraphicEntityListBase)
             private
                 procedure addLinePlot(const graphPlotIn : TGraphPlotData);
                 procedure addScatterPlot(const graphPlotIn : TGraphPlotData);
@@ -36,7 +36,7 @@ implementation
                                                             graphPlotIn.lineStyle,
                                                             graphPlotIn.arrDataPoints   );
 
-                addGraphicObject( graphicLinePlot );
+                addGraphicEntity( graphicLinePlot );
             end;
 
         procedure TGraphPlotsList.addScatterPlot(const graphPlotIn : TGraphPlotData);
@@ -47,7 +47,7 @@ implementation
                                                                     graphPlotIn.plotColour,
                                                                     graphPlotIn.arrDataPoints   );
 
-                addGraphicObject( graphicScatterPlot );
+                addGraphicEntity( graphicScatterPlot );
             end;
 
         procedure TGraphPlotsList.addMarkedLinePlot(const graphPlotIn : TGraphPlotData);
@@ -60,7 +60,7 @@ implementation
                                                                     graphPlotIn.lineStyle,
                                                                     graphPlotIn.arrDataPoints   );
 
-                addGraphicObject( graphicMarkedLinePlot );
+                addGraphicEntity( graphicMarkedLinePlot );
             end;
 
         procedure TGraphPlotsList.addFunction(const graphPlotIn : TGraphPlotData);
@@ -99,7 +99,7 @@ implementation
 
         procedure TGraphPlotsList.addMousePointTracker(const mousePointTrackerIn : TGraphicMousePointTracker);
             begin
-                addGraphicObject( mousePointTrackerIn );
+                addGraphicEntity( mousePointTrackerIn );
             end;
 
 

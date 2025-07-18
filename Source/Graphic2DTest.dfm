@@ -30,6 +30,8 @@ object Form1: TForm1
     ShowHint = True
     TabOrder = 0
     OnUpdateGraphics = JDBGraphic2D1UpdateGraphics
+    ExplicitLeft = 64
+    ExplicitTop = 73
   end
   object PanelTop: TPanel
     Left = 0
