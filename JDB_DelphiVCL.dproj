@@ -69,7 +69,7 @@
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <DCC_Inlining>auto</DCC_Inlining>
         <DCC_IncludeDCUsInUsesCompletion>false</DCC_IncludeDCUsInUsesCompletion>
-        <DCC_UnitSearchPath>..\JDB_Mathematics\Source;..\JDB_Mathematics\Source\AxisConversion;..\JDB_Mathematics\Source\Geometry;..\JDB_Mathematics\Source\LinearAlgebra;..\JDB_Mathematics\Source\LinearAlgebra\Matrices;..\JDB_Graphics\Source;..\JDB_Graphics\Source\AxisConversion;..\JDB_Graphics\Source\GraphicDrawer;..\JDB_Graphics\Source\GraphicDrawingClasses;..\JDB_Graphics\Source\GraphicDrawingClasses\GraphicEntityFoundationalShapeClasses;..\JDB_Graphics\Source\GraphicDrawingClasses\GraphicEntityGroupClasses;..\JDB_Graphics\Source\GraphicDrawingClasses\GraphicEntityPlottingClasses;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\JDB_Mathematics\Source;..\JDB_Mathematics\Source\AxisConversion;..\JDB_Mathematics\Source\Geometry;..\JDB_Mathematics\Source\LinearAlgebra;..\JDB_Mathematics\Source\LinearAlgebra\Matrices;..\JDB_Graphics\Source;..\JDB_Graphics\Source\CustomDirect2DCanvas;..\JDB_Graphics\Source\GraphicDrawer;..\JDB_Graphics\Source\GraphicDrawingClasses;..\JDB_Graphics\Source\GraphicDrawingClasses\GraphicEntityFoundationalShapeClasses;..\JDB_Graphics\Source\GraphicDrawingClasses\GraphicEntityGroupClasses;..\JDB_Graphics\Source\GraphicDrawingClasses\GraphicEntityPlottingClasses;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_UseMSBuildExternally>true</DCC_UseMSBuildExternally>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -167,7 +167,6 @@
                     <Source Name="MainSource">JDB_DelphiVCL.dpk</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="C:\Users\jasonbarry\Documents\Embarcadero\Studio\Projects\BuildOutput\JDB_DelphiVCL.bpl">File C:\Users\jasonbarry\Documents\Embarcadero\Studio\Projects\BuildOutput\JDB_DelphiVCL.bpl not found</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
