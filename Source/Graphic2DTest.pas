@@ -199,7 +199,7 @@ implementation
                 //arc
                     graphicsListInOut.setCurrentDrawingLayer('Arc Layer');
 
-                    graphicsListInOut.addArc( -100, -125, 25, 25, 90, -90, True, 5, 0, TColors.Red );
+                    graphicsListInOut.addArc( -100, -125, 50, 25, 90, -135, True, 5, 0, TColors.Red );
 
                     graphicsListInOut.addArc( 0, -125, 20, 20, 45, 360-45, True, 5, 0, TColors.Yellow );
                     graphicsListInOut.addEllipse( 8, 8, 0, -114, True, 1 ,0, EScaleType.scDrawing );
