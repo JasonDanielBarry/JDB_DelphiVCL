@@ -141,17 +141,17 @@ implementation
                 //text
                     graphicsListInOut.setCurrentDrawingLayer('Text Layer 1');
 
-                    graphicsListInOut.addText(0, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (0, -30)');
+                    graphicsListInOut.addText(0, -30, 'This is a short' + sLineBreak + 'sentence of' + sLineBreak + '4 lines' + sLineBreak + 'at (0, -30)');
 
-                    graphicsListInOut.addText(  100, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (100, -30)',
+                    graphicsListInOut.addText(  100, -30, 'This is a short' + sLineBreak + 'sentence of' + sLineBreak + '4 lines' + sLineBreak + 'at (100, -30)',
                                                 False, 9, 0, EScaleType.scCanvas,
                                                 THorzRectAlign.Center, TVertRectAlign.Center                                );
 
-                    graphicsListInOut.addText(  200, -30, 'This is a short'#13'sentence of'#13'4 lines'#13'at (200, -30)',
+                    graphicsListInOut.addText(  200, -30, 'This is a short' + sLineBreak + 'sentence of' + sLineBreak + '4 lines' + sLineBreak + 'at (200, -30)',
                                                 False, 9, 0, EScaleType.scCanvas,
                                                 THorzRectAlign.Right, TVertRectAlign.Bottom                                 );
 
-                    graphicsListInOut.addText(150, -50, 'This is a short'#13'sentence of'#13'3 lines');
+                    graphicsListInOut.addText(150, -50, 'This is a short' + sLineBreak + 'sentence of' + sLineBreak + '3 lines');
 
                 //vertical boundary test
                     graphicsListInOut.setCurrentDrawingLayer('Text Layer 2');
