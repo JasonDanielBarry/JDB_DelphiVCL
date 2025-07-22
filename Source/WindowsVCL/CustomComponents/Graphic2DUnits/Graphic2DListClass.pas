@@ -10,7 +10,8 @@ interface
             GeometryTypes,
             GeomLineClass, GeomPolyLineClass, GeomPolygonClass,
             DrawingAxisConversionClass,
-            GraphicDrawingTypes,
+            Direct2DXYEntityCanvasClass,
+            GraphicEntityTypes,
             GraphicEntityBaseClass,
             GraphicArcClass, GraphicEllipseClass, GraphicGeometryClass,
             GraphicLineClass, GraphicPolylineClass, GraphicPolygonClass,
@@ -146,10 +147,6 @@ implementation
                         centrePoint     : TGeomPoint;
                         newGraphicArc   : TGraphicArc;
                     begin
-                        //check if the arc angles are a valid combination
-                            if NOT( TGraphicArc.validArcAngles( startAngleIn, endAngleIn ) ) then
-                                exit();
-
                         centrePoint := TGeomPoint.create( arcCentreXIn, arcCentreYIn );
 
                         newGraphicArc := TGraphicArc.create(    filledIn,

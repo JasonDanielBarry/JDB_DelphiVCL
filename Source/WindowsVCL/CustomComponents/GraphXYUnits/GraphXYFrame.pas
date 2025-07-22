@@ -4,13 +4,13 @@ interface
 
 uses
     Winapi.Windows, Winapi.Messages,
-    Winapi.D2D1, Vcl.Direct2D,
     System.SysUtils, System.Variants, System.Classes, System.Generics.Collections, System.UITypes,
     Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls,
 
     GeometryTypes,
     GeomBox,
     GeomPolyLineClass,
+    Direct2DXYEntityCanvasClass,
     GraphicGridSettingsRecord,
     GraphicScatterPlotClass,
     GraphicPolylineClass,
@@ -68,7 +68,7 @@ uses
                     procedure sendGraphPlotsToDrawer();
                 //post draw event
                     procedure postDrawGraphEvent(   const canvasWidthIn, canvasHeightIn : integer;
-                                                    const D2DCanvasIn                   : TDirect2DCanvas   );
+                                                    const D2DCanvasIn                   : TDirect2DXYEntityCanvas   );
             protected
                 //process windows messages
                     procedure wndProc(var messageInOut : TMessage); override;
@@ -244,7 +244,7 @@ implementation
 
         //post draw event
             procedure TCustomGraphXY.postDrawGraphEvent(const canvasWidthIn, canvasHeightIn : integer;
-                                                        const D2DCanvasIn                   : TDirect2DCanvas);
+                                                        const D2DCanvasIn                   : TDirect2DXYEntityCanvas);
                 begin
 
                 end;

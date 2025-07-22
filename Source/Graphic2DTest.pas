@@ -5,11 +5,17 @@ interface
 uses
   Winapi.Windows, Winapi.Messages,
   System.SysUtils, System.Variants, System.Classes, system.UITypes, system.Math, System.Types,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, vcl.Styles, vcl.Themes,
-  CustomComponentPanelClass, Graphic2DComponent, GraphicDrawingTypes,
-  Graphic2DListClass, GraphicArrowClass,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, vcl.Styles, vcl.Themes, Vcl.StdCtrls,
+
   GeometryTypes,
-  GeomLineClass, GeomPolyLineClass, GeomPolygonClass, Vcl.StdCtrls;
+  GeomLineClass, GeomPolyLineClass, GeomPolygonClass,
+  Direct2DXYEntityCanvasClass,
+  GraphicEntityTypes,
+  GraphicArrowClass,
+  Graphic2DListClass,
+  CustomComponentPanelClass,
+  Graphic2DComponent
+  ;
 
 type
   TForm1 = class(TForm)
