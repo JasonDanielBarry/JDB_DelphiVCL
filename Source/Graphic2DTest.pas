@@ -77,7 +77,7 @@ implementation
 
                     FreeAndNil( polygon );
 
-                    graphicsListInOut.addText(50, 100, 'This is a polygon'#13'rotated 45'#176, True, 9, 45, EScaleType.scCanvas, THorzRectAlign.Center, TVertRectAlign.Center );
+                    graphicsListInOut.addText(50, 100, 'This is a polygon' + sLineBreak + 'rotated 45'#176, True, 9, 45, EScaleType.scCanvas, THorzRectAlign.Center, TVertRectAlign.Center );
 
                 //line 1
                     graphicsListInOut.setCurrentDrawingLayer('Line Layer');
@@ -116,7 +116,7 @@ implementation
 
                     FreeAndNil( line );
 
-                    graphicsListInOut.addText( polyline.boundingBox().xMax, polyline.boundingBox().yMax, 'This is a polyline'#13'rotated 30'#176 );
+                    graphicsListInOut.addText( polyline.boundingBox().xMax, polyline.boundingBox().yMax, 'This is a polyline' + sLineBreak + 'rotated 30'#176 );
 
                     FreeAndNil( polyline );
 
