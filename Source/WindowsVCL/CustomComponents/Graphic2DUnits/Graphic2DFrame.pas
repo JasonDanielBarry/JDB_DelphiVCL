@@ -577,12 +577,12 @@ implementation
         //redraw the graphic
             procedure TCustomGraphic2D.redrawGraphic();
                 begin
-                    PBDrawer2D.postRedrawGraphicMessage( self );
+                    PBDrawer2D.GraphicDrawer.postRedrawGraphicMessage( self );
                 end;
 
             procedure TCustomGraphic2D.updateBackgroundColour();
                 begin
-                    PBDrawer2D.updateBackgroundColour( self );
+                    PBDrawer2D.GraphicDrawer.updateBackgroundColour( self );
                 end;
 
             procedure TCustomGraphic2D.updateGraphics();
@@ -597,7 +597,7 @@ implementation
 
                         onUpdateGraphicsEvent( self, graphicsList );
 
-                        PBDrawer2D.updateGraphics( self, graphicsList );
+                        PBDrawer2D.GraphicDrawer.updateGraphicEntitys( self, graphicsList );
 
                         updateLayerTable();
                     finally

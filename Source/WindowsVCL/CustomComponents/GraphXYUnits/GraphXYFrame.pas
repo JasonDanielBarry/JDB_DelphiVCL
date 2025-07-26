@@ -175,7 +175,7 @@ implementation
                                                 CheckBoxMinorLines.Checked
                                           );
 
-                    PBGraphXY.setGridSettings( gridSettings );
+                    PBGraphXY.GraphicDrawer.setGridSettings( gridSettings );
 
                     replot();
                 end;
@@ -231,7 +231,7 @@ implementation
                                 end;
 
                     //update the graphic drawers graphicsS
-                        PBGraphXY.updateGraphics( self, graphPlotsList );
+                        PBGraphXY.GraphicDrawer.updateGraphicEntitys( self, graphPlotsList );
 
                     //free graphic object list memory
                         FreeAndNil( graphPlotsList );
@@ -278,7 +278,7 @@ implementation
 
                     graphPlotsMap := TGraphXYMap.Create();
 
-                    PBGraphXY.setGridEnabled( True );
+                    PBGraphXY.GraphicDrawer.setGridEnabled( True );
                     PBGraphXY.GraphicDrawer.setDrawingSpaceRatioEnabled( False );
                     PBGraphXY.GraphicDrawer.setGeometryBorderPercentage( 0 );
                     PBGraphXY.GraphicDrawer.setOnPostGraphicDrawEvent( postDrawGraphEvent );
@@ -400,7 +400,7 @@ implementation
         //replot graphs
             procedure TCustomGraphXY.replot();
                 begin
-                    PBGraphXY.postRedrawGraphicMessage( self );
+                    PBGraphXY.GraphicDrawer.postRedrawGraphicMessage( self );
                 end;
 
 end.
