@@ -470,7 +470,7 @@ implementation
                     mouseCoordStr   : string;
                     mousePointXY    : TGeomPoint;
                 begin
-                    if (NOT( PBDrawer2D.GraphicDrawer.getMouseControlActive() )) then
+                    if NOT( PBDrawer2D.GraphicDrawer.getMouseControlActive() ) then
                         exit();
 
                     //convert mouse position to XY coordinate
