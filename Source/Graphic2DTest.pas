@@ -587,8 +587,7 @@ implementation
                     begin
                         drawingHeading := 'Graph Y vs X';
 
-                        AD2DCanvas.Pen.Color := clBlack;
-                        AD2DCanvas.Pen.Width := 2;
+                        AD2DCanvas.setPenLineProperties( 2, clBlack );
                         AD2DCanvas.Brush.Color := AD2DCanvas.getBackgroundColour();
 
                         AD2DCanvas.drawLTRectangleF( True, True, 175, 75, 0, 0, PointF(AWidth - 5, 75), THorzRectAlign.Right, TVertRectAlign.Top );
@@ -598,9 +597,7 @@ implementation
                         SetLength( arrPoints, 2 );
 
                         //legend
-                            AD2DCanvas.Font.Size := 11;
-
-                            AD2DCanvas.Font.Style := [TFontStyle.fsUnderline];
+                            AD2DCanvas.setFontTextProperties( 11, clWindowText, [TFontStyle.fsUnderline] );
 
                             AD2DCanvas.printLTTextF( 'Legend', PointF(AWidth - 175, 75+12.5), False, THorzRectAlign.Left, TVertRectAlign.Center );
 
@@ -610,13 +607,9 @@ implementation
                             arrPoints[0] := PointF(AWidth - 100, 75 + 3*12.5);
                             arrPoints[1] := PointF(AWidth -  25, 75 + 3*12.5);
 
-                            AD2DCanvas.Pen.Color := TColors.Blueviolet;
-                            AD2DCanvas.Pen.Width := 3;
-                            AD2DCanvas.Pen.Style := TPenStyle.psSolid;
+                            AD2DCanvas.setPenLineProperties( 3, TColors.Blueviolet );
 
                             AD2DCanvas.drawLTLineF( arrPoints );
-
-                            AD2DCanvas.Font.Size := 11;
 
                             AD2DCanvas.printLTTextF( 'x'#178, PointF(AWidth - 175, 75+3*12.5), False, THorzRectAlign.Left, TVertRectAlign.Center );
 
@@ -624,17 +617,13 @@ implementation
                             arrPoints[0] := PointF(AWidth - 100, 75 + 5*12.5);
                             arrPoints[1] := PointF(AWidth -  25, 75 + 5*12.5);
 
-                            AD2DCanvas.Pen.Color := TColors.Green;
-                            AD2DCanvas.Pen.Width := 3;
-                            AD2DCanvas.Pen.Style := TPenStyle.psDash;
+                            AD2DCanvas.setPenLineProperties( 3, TColors.Green,TPenStyle.psDash );
 
                             AD2DCanvas.drawLTLineF( arrPoints );
 
                             AD2DCanvas.Font.Size := 11;
 
                             AD2DCanvas.printLTTextF( 'sin(x) + x'#178, PointF(AWidth - 175, 75+5*12.5), False, THorzRectAlign.Left, TVertRectAlign.Center );
-
-
                     end;
                 2:
                     drawingHeading := 'Fin Plate Diagram';
@@ -644,7 +633,6 @@ implementation
                     drawingHeading := 'Bending Beam Section';
             end;
 
-            AD2DCanvas.Font.Size := 11;
             AD2DCanvas.Font.Style := [TFontStyle.fsBold, TFontStyle.fsUnderline];
             AD2DCanvas.printLTTextF( drawingHeading, PointF(5, 5), True );
         end;
