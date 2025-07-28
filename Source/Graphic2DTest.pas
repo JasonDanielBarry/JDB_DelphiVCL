@@ -9,6 +9,7 @@ uses
 
   GeometryTypes,
   GeomLineClass, GeomPolyLineClass, GeomPolygonClass,
+  Direct2DLTEntityCanvasClass,
   Direct2DXYEntityCanvasClass,
   GraphicEntityTypes,
   GraphicArrowClass,
@@ -21,14 +22,18 @@ type
   TForm1 = class(TForm)
     JDBGraphic2D1: TJDBGraphic2D;
     PanelTop: TPanel;
-    ComboBox1: TComboBox;
     LabelSelectGraphic: TLabel;
+    ComboBox1: TComboBox;
     procedure JDBGraphic2D1UpdateGraphics(  ASender             : TObject;
                                             var AGraphic2DList  : TGraphic2DList );
     procedure FormShow(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure JDBGraphic2D1PostGraphicDraw(const AWidth, AHeight: Integer; const AD2DCanvas: TDirect2DLTEntityCanvas);
   private
+    var
+        graphicIndex : integer;
+
     //different graphics
         procedure BlueBoxGraphic(var graphicsListInOut : TGraphic2DList);
         procedure XYGraphs(var graphicsListInOut : TGraphic2DList);
@@ -300,7 +305,7 @@ implementation
                             x := x + 0.2;
                         end;
 
-                    graphicsListInOut.addPolyline(polyLine, 3, TColors.Green);
+                    graphicsListInOut.addPolyline(polyLine, 3, TColors.Green, TPenStyle.psDash);
 
                     graphicsListInOut.addText( x, y, 'y = sin(x) + x'#178 );
 
@@ -544,13 +549,13 @@ implementation
             inherited create(nil);
 
             ComboBox1.ItemIndex := 0;
-
-//            TStyleManager.SetStyle('Windows11 Modern Dark');
         end;
 
     procedure TForm1.ComboBox1Change(Sender: TObject);
         begin
             self.LockDrawing();
+
+            graphicIndex := ComboBox1.ItemIndex;
 
             JDBGraphic2D1.updateGraphics();
             JDBGraphic2D1.zoomAll();
@@ -571,10 +576,83 @@ implementation
             JDBGraphic2D1.zoomAll();
         end;
 
+    procedure TForm1.JDBGraphic2D1PostGraphicDraw(const AWidth, AHeight: Integer; const AD2DCanvas: TDirect2DLTEntityCanvas);
+        var
+            drawingHeading : string;
+        begin
+            case ( graphicIndex ) of
+                0:
+                    drawingHeading := 'All Graphic Entities';
+                1:
+                    begin
+                        drawingHeading := 'Graph Y vs X';
+
+                        AD2DCanvas.Pen.Color := clBlack;
+                        AD2DCanvas.Pen.Width := 2;
+                        AD2DCanvas.Brush.Color := AD2DCanvas.getBackgroundColour();
+
+                        AD2DCanvas.drawLTRectangleF( True, True, 175, 75, 0, 0, PointF(AWidth - 5, 75), THorzRectAlign.Right, TVertRectAlign.Top );
+
+                        var arrPoints : TArray<TPointF>;
+
+                        SetLength( arrPoints, 2 );
+
+                        //legend
+                            AD2DCanvas.Font.Size := 11;
+
+                            AD2DCanvas.Font.Style := [TFontStyle.fsUnderline];
+
+                            AD2DCanvas.printLTTextF( 'Legend', PointF(AWidth - 175, 75+12.5), False, THorzRectAlign.Left, TVertRectAlign.Center );
+
+                            AD2DCanvas.Font.Style := [];
+
+                        //x^2
+                            arrPoints[0] := PointF(AWidth - 100, 75 + 3*12.5);
+                            arrPoints[1] := PointF(AWidth -  25, 75 + 3*12.5);
+
+                            AD2DCanvas.Pen.Color := TColors.Blueviolet;
+                            AD2DCanvas.Pen.Width := 3;
+                            AD2DCanvas.Pen.Style := TPenStyle.psSolid;
+
+                            AD2DCanvas.drawLTLineF( arrPoints );
+
+                            AD2DCanvas.Font.Size := 11;
+
+                            AD2DCanvas.printLTTextF( 'x'#178, PointF(AWidth - 175, 75+3*12.5), False, THorzRectAlign.Left, TVertRectAlign.Center );
+
+                        //trig curve
+                            arrPoints[0] := PointF(AWidth - 100, 75 + 5*12.5);
+                            arrPoints[1] := PointF(AWidth -  25, 75 + 5*12.5);
+
+                            AD2DCanvas.Pen.Color := TColors.Green;
+                            AD2DCanvas.Pen.Width := 3;
+                            AD2DCanvas.Pen.Style := TPenStyle.psDash;
+
+                            AD2DCanvas.drawLTLineF( arrPoints );
+
+                            AD2DCanvas.Font.Size := 11;
+
+                            AD2DCanvas.printLTTextF( 'sin(x) + x'#178, PointF(AWidth - 175, 75+5*12.5), False, THorzRectAlign.Left, TVertRectAlign.Center );
+
+
+                    end;
+                2:
+                    drawingHeading := 'Fin Plate Diagram';
+                3:
+                    drawingHeading := 'Soil Nail Wall Layout';
+                4:
+                    drawingHeading := 'Bending Beam Section';
+            end;
+
+            AD2DCanvas.Font.Size := 11;
+            AD2DCanvas.Font.Style := [TFontStyle.fsBold, TFontStyle.fsUnderline];
+            AD2DCanvas.printLTTextF( drawingHeading, PointF(5, 5), True );
+        end;
+
     procedure TForm1.JDBGraphic2D1UpdateGraphics(   ASender             : TObject;
                                                     var AGraphic2DList  : TGraphic2DList );
         begin
-            case (ComboBox1.ItemIndex) of
+            case ( graphicIndex ) of
                 0:
                     BlueBoxGraphic( AGraphic2DList );
                 1:

@@ -30,6 +30,7 @@ object Form1: TForm1
     ShowHint = True
     TabOrder = 0
     OnUpdateGraphics = JDBGraphic2D1UpdateGraphics
+    OnPostGraphicDraw = JDBGraphic2D1PostGraphicDraw
   end
   object PanelTop: TPanel
     Left = 0
@@ -58,12 +59,11 @@ object Form1: TForm1
     object ComboBox1: TComboBox
       Left = 88
       Top = 0
-      Width = 125
+      Width = 145
       Height = 23
       Align = alLeft
-      Style = csDropDownList
-      Color = clWhite
       TabOrder = 0
+      Text = 'ComboBox1'
       OnChange = ComboBox1Change
       Items.Strings = (
         'Blue Box'

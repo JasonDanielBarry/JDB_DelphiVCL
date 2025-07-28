@@ -6,6 +6,7 @@ interface
         System.SysUtils, System.Classes,
         Vcl.Controls,
         CustomComponentPanelClass,
+        GraphicDrawerTypes,
         Graphic2DTypes,
         Graphic2DFrame;
 
@@ -15,7 +16,9 @@ interface
                 var
                     customGraphic2D : TCustomGraphic2D;
                 procedure setOnUpdateGraphicsEvent(const graphicDrawEventIn : TUpdateGraphicsEvent);
+                procedure setOnPostGraphicDrawEvent(const onPostGraphicDrawEventIn : TPostGraphicDrawEvent);
                 function getOnUpdateGraphicsEvent() : TUpdateGraphicsEvent;
+                function getOnPostGraphicDrawEvent() : TPostGraphicDrawEvent;
             public
                 constructor Create(AOwner: TComponent); override;
                 destructor Destroy(); override;
@@ -25,6 +28,7 @@ interface
                 procedure zoomAll();
             published
                 property OnUpdateGraphics : TUpdateGraphicsEvent read getOnUpdateGraphicsEvent write setOnUpdateGraphicsEvent;
+                property OnPostGraphicDraw : TPostGraphicDrawEvent read getOnPostGraphicDrawEvent write setOnPostGraphicDrawEvent;
         end;
 
 implementation
@@ -35,9 +39,19 @@ implementation
                 customGraphic2D.setOnUpdateGraphicsEvent(graphicDrawEventIn);
             end;
 
+        procedure TJDBGraphic2D.setOnPostGraphicDrawEvent(const onPostGraphicDrawEventIn : TPostGraphicDrawEvent);
+            begin
+                customGraphic2D.setOnPostGraphicDrawEvent( onPostGraphicDrawEventIn );
+            end;
+
         function TJDBGraphic2D.getOnUpdateGraphicsEvent() : TUpdateGraphicsEvent;
             begin
                 result := customGraphic2D.getOnUpdateGraphicsEvent();
+            end;
+
+        function TJDBGraphic2D.getOnPostGraphicDrawEvent() : TPostGraphicDrawEvent;
+            begin
+                result := customGraphic2D.getOnPostGraphicDrawEvent();
             end;
 
     //public

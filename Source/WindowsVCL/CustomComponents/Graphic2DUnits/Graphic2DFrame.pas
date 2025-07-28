@@ -11,6 +11,7 @@ interface
         Vcl.Buttons, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, vcl.Themes, Vcl.CheckLst,
         GeneralComponentHelperMethods,
         GeometryTypes, GeomBox,
+        GraphicDrawerTypes,
         Graphic2DListClass,
         Graphic2DTypes,
         GraphicDrawer2DPaintBoxClass
@@ -121,8 +122,10 @@ interface
                     destructor destroy(); override;
                 //accessors
                     function getOnUpdateGraphicsEvent() : TUpdateGraphicsEvent;
+                    function getOnPostGraphicDrawEvent() : TPostGraphicDrawEvent;
                 //modifiers
                     procedure setOnUpdateGraphicsEvent(const onUpdateGraphicsEventIn : TUpdateGraphicsEvent);
+                    procedure setOnPostGraphicDrawEvent(const onPostGraphicDrawEventIn : TPostGraphicDrawEvent);
                 //redraw the graphic
                     procedure redrawGraphic();
                     procedure updateBackgroundColour();
@@ -568,10 +571,20 @@ implementation
                     result := onUpdateGraphicsEvent;
                 end;
 
+            function TCustomGraphic2D.getOnPostGraphicDrawEvent() : TPostGraphicDrawEvent;
+                begin
+                    result := PBDrawer2D.GraphicDrawer.getOnPostGraphicDrawEvent();
+                end;
+
         //modifiers
             procedure TCustomGraphic2D.setOnUpdateGraphicsEvent(const onUpdateGraphicsEventIn : TUpdateGraphicsEvent);
                 begin
                     onUpdateGraphicsEvent := onUpdateGraphicsEventIn;
+                end;
+
+            procedure TCustomGraphic2D.setOnPostGraphicDrawEvent(const onPostGraphicDrawEventIn : TPostGraphicDrawEvent);
+                begin
+                    PBDrawer2D.GraphicDrawer.setOnPostGraphicDrawEvent( onPostGraphicDrawEventIn );
                 end;
 
         //redraw the graphic

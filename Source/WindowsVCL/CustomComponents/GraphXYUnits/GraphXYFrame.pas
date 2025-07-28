@@ -281,7 +281,6 @@ implementation
                     PBGraphXY.GraphicDrawer.setGridEnabled( True );
                     PBGraphXY.GraphicDrawer.setDrawingSpaceRatioEnabled( False );
                     PBGraphXY.GraphicDrawer.setGeometryBorderPercentage( 0 );
-                    PBGraphXY.GraphicDrawer.setOnPostGraphicDrawEvent( postDrawGraphEvent );
 
                     PageControlSettings.ActivePageIndex := 0;
 
