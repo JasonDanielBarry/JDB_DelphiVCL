@@ -401,10 +401,7 @@ implementation
 
                 polygon := TGeomPolygon.create();
 
-                polygon.addVertex(0, -8);
-                polygon.addVertex(8, 0);
-                polygon.addVertex(8, 350);
-                polygon.addVertex(0, 350 + 8);
+                polygon.setVertices( [0, 8, 8, 0], [-8, 0, 350, 350 + 8] );
 
                 polygon.shift(250, 400);
 
@@ -588,7 +585,7 @@ implementation
                         drawingHeading := 'Graph Y vs X';
 
                         AD2DCanvas.setPenLineProperties( 2, clBlack );
-                        AD2DCanvas.Brush.Color := AD2DCanvas.getBackgroundColour();
+                        AD2DCanvas.setBrushFillProperties( True, AD2DCanvas.BackgroundColour );
 
                         AD2DCanvas.drawLTRectangleF( True, True, 175, 75, 0, 0, PointF(AWidth - 5, 75), THorzRectAlign.Right, TVertRectAlign.Top );
 
