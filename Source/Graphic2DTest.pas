@@ -630,7 +630,7 @@ implementation
                     drawingHeading := 'Bending Beam Section';
             end;
 
-            AD2DCanvas.Font.Style := [TFontStyle.fsBold, TFontStyle.fsUnderline];
+            AD2DCanvas.setFontTextProperties( 11, clBlack, [TFontStyle.fsBold, TFontStyle.fsUnderline] );
             AD2DCanvas.printLTTextF( drawingHeading, PointF(5, 5), True );
         end;
 
