@@ -31,7 +31,8 @@ requires
   rtl,
   vcl,
   vclx,
-  Skia.Package.RTL;
+  Skia.Package.RTL,
+  vclimg;
 
 contains
   GeneralComponentHelperMethods in 'Source\WindowsVCL\GeneralComponentHelperMethods.pas',

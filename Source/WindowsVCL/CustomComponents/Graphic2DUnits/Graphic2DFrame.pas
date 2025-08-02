@@ -8,7 +8,7 @@ interface
         System.SysUtils, System.Variants, System.Classes, system.Types, system.UITypes,
         system.UIConsts, system.Threading, system.Math, system.Diagnostics, System.Actions,
         Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Skia,
-        Vcl.Buttons, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, vcl.Themes, Vcl.CheckLst,
+        Vcl.Buttons, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ActnList, Vcl.Menus, Vcl.Themes, Vcl.CheckLst,
         GeneralComponentHelperMethods,
         GeometryTypes, GeomBox,
         GraphicDrawerTypes,
@@ -75,6 +75,10 @@ interface
             N4: TMenuItem;
             ActionShowHideControls: TAction;
             ShowToolbar1: TMenuItem;
+            ActionSaveGraphicToFile: TAction;
+            N5: TMenuItem;
+            ExportGraphic1: TMenuItem;
+    FileSaveGraphicDialog: TFileSaveDialog;
             //events
                 procedure ComboBoxZoomPercentChange(Sender: TObject);
                 procedure FrameResize(Sender: TObject);
@@ -93,6 +97,7 @@ interface
                 procedure CheckListBoxLayerTableClick(Sender: TObject);
                 procedure ActionShowHideControlsExecute(Sender: TObject);
                 procedure CheckListBoxLayerTableDblClick(Sender: TObject);
+                procedure ActionSaveGraphicToFileExecute(Sender: TObject);
             private
                 var
                     axisSettingsVisible,
@@ -279,6 +284,34 @@ implementation
                 PBDrawer2D.GraphicDrawer.recentre();
 
                 redrawGraphic();
+            end;
+
+        procedure TCustomGraphic2D.ActionSaveGraphicToFileExecute(Sender: TObject);
+            var
+                saveFileName : string;
+            begin
+                //asdf
+
+                if NOT( FileSaveGraphicDialog.Execute() ) then
+                    exit();
+
+                saveFileName := FileSaveGraphicDialog.FileName;
+
+                if NOT( saveFileName.Contains('.') ) then
+                    begin
+                        var fileExtIndex    : integer;
+                        var fileMask,
+                            fileExt         : string;
+
+                        fileExtIndex    := FileSaveGraphicDialog.FileTypeIndex;
+                        fileMask        := FileSaveGraphicDialog.FileTypes[ fileExtIndex - 1 ].FileMask;
+
+                        fileExt := ExtractFileExt( fileMask );
+
+                        saveFileName := saveFileName + fileExt;
+                    end;
+
+                PBDrawer2D.GraphicDrawer.saveGraphicToFile( saveFileName );
             end;
 
         procedure TCustomGraphic2D.ActionShowHideControlsExecute(Sender: TObject);

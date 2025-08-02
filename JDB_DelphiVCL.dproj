@@ -77,14 +77,14 @@
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_UsePackage>vcl;rtl;vclx;Skia.Package.RTL;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vcl;rtl;vclx;Skia.Package.RTL;vclimg;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_DcuOutput>..\CompiledUnits32\</DCC_DcuOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <DCC_UsePackage>vcl;rtl;vclx;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vcl;rtl;vclx;vclimg;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64x)'!=''">
-        <DCC_UsePackage>vcl;rtl;vclx;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vcl;rtl;vclx;vclimg;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -124,6 +124,7 @@
         <DCCReference Include="vcl.dcp"/>
         <DCCReference Include="vclx.dcp"/>
         <DCCReference Include="Skia.Package.RTL.dcp"/>
+        <DCCReference Include="vclimg.dcp"/>
         <DCCReference Include="Source\WindowsVCL\GeneralComponentHelperMethods.pas"/>
         <DCCReference Include="Source\WindowsVCL\InputManagerClass.pas"/>
         <DCCReference Include="Source\WindowsVCL\HelperClasses\PageControlHelperClass.pas"/>

@@ -23,8 +23,7 @@ object CustomGraphic2D: TCustomGraphic2D
     Height = 713
     Align = alClient
     PopupMenu = PopupMenuGraphicControls
-    ExplicitLeft = 3
-    ExplicitTop = 29
+    ExplicitTop = 26
   end
   object GridPanelDirectionalPan: TGridPanel
     Left = 1158
@@ -539,6 +538,10 @@ object CustomGraphic2D: TCustomGraphic2D
       Caption = 'Show Toolbar'
       OnExecute = ActionShowHideControlsExecute
     end
+    object ActionSaveGraphicToFile: TAction
+      Caption = 'Export Graphic'
+      OnExecute = ActionSaveGraphicToFileExecute
+    end
   end
   object PopupMenuGraphicControls: TPopupMenu
     Left = 400
@@ -591,5 +594,30 @@ object CustomGraphic2D: TCustomGraphic2D
     object ShowToolbar1: TMenuItem
       Action = ActionShowHideControls
     end
+    object N5: TMenuItem
+      Caption = '-'
+    end
+    object ExportGraphic1: TMenuItem
+      Action = ActionSaveGraphicToFile
+    end
+  end
+  object FileSaveGraphicDialog: TFileSaveDialog
+    FavoriteLinks = <>
+    FileTypes = <
+      item
+        DisplayName = 'Bitmap Image'
+        FileMask = '*.bmp'
+      end
+      item
+        DisplayName = 'JPEG Image'
+        FileMask = '*.jpg'
+      end
+      item
+        DisplayName = 'Portable Network Graphic'
+        FileMask = '*.png'
+      end>
+    Options = []
+    Left = 224
+    Top = 424
   end
 end
