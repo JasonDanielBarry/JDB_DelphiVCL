@@ -69,7 +69,6 @@
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <DCC_Inlining>auto</DCC_Inlining>
         <DCC_IncludeDCUsInUsesCompletion>false</DCC_IncludeDCUsInUsesCompletion>
-        <DCC_UnitSearchPath>..\JDB_Mathematics\Source;..\JDB_Mathematics\Source\AxisConversion;..\JDB_Mathematics\Source\Geometry;..\JDB_Mathematics\Source\LinearAlgebra;..\JDB_Mathematics\Source\LinearAlgebra\Matrices;..\JDB_Graphics\Source;..\JDB_Graphics\Source\CustomDirect2DCanvas;..\JDB_Graphics\Source\GraphicDrawer;..\JDB_Graphics\Source\GraphicEntityClasses;..\JDB_Graphics\Source\GraphicEntityClasses\GraphicEntityFoundationalClasses;..\JDB_Graphics\Source\GraphicEntityClasses\GraphicEntityFoundationalClasses\GraphicEntityGeometryClasses;..\JDB_Graphics\Source\GraphicEntityClasses\GraphicEntityFoundationalClasses\GraphicEntityShapeClasses;..\JDB_Graphics\Source\GraphicEntityClasses\GraphicEntityGroupClasses;..\JDB_Graphics\Source\GraphicEntityClasses\GraphicEntityPlottingClasses;..\JDB_DelphiVCL\Source;..\JDB_DelphiVCL\Source\WindowsVCL;..\JDB_DelphiVCL\Source\WindowsVCL\CustomComponents;..\JDB_DelphiVCL\Source\WindowsVCL\CustomComponents\Graphic2DUnits;..\JDB_DelphiVCL\Source\WindowsVCL\CustomComponents\GraphXYUnits;..\JDB_DelphiVCL\Source\WindowsVCL\HelperClasses;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_UseMSBuildExternally>true</DCC_UseMSBuildExternally>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -128,25 +127,8 @@
         <DCCReference Include="Source\WindowsVCL\GeneralComponentHelperMethods.pas"/>
         <DCCReference Include="Source\WindowsVCL\InputManagerClass.pas"/>
         <DCCReference Include="Source\WindowsVCL\HelperClasses\PageControlHelperClass.pas"/>
-        <DCCReference Include="Source\WindowsVCL\CustomComponents\CustomComponentPanelClass.pas"/>
         <DCCReference Include="Source\WindowsVCL\CustomComponents\CustomComponentRegistrationUnit.pas"/>
         <DCCReference Include="Source\WindowsVCL\CustomComponents\CustomStringGridClass.pas"/>
-        <DCCReference Include="Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DComponent.pas"/>
-        <DCCReference Include="Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DFrame.pas">
-            <Form>CustomGraphic2D</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DTypes.pas"/>
-        <DCCReference Include="Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DListClass.pas"/>
-        <DCCReference Include="Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphPlotsListClass.pas"/>
-        <DCCReference Include="Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphXYComponent.pas"/>
-        <DCCReference Include="Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphXYFrame.pas">
-            <Form>CustomGraphXY</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphXYTypes.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -168,6 +150,7 @@
                     <Source Name="MainSource">JDB_DelphiVCL.dpk</Source>
                 </Source>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\jasonbarry\Documents\Embarcadero\Studio\Projects\BuildOutput\JDB_DelphiVCL.bpl">(untitled)</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>

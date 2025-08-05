@@ -38,16 +38,7 @@ contains
   GeneralComponentHelperMethods in 'Source\WindowsVCL\GeneralComponentHelperMethods.pas',
   InputManagerClass in 'Source\WindowsVCL\InputManagerClass.pas',
   PageControlHelperClass in 'Source\WindowsVCL\HelperClasses\PageControlHelperClass.pas',
-  CustomComponentPanelClass in 'Source\WindowsVCL\CustomComponents\CustomComponentPanelClass.pas',
   CustomComponentRegistrationUnit in 'Source\WindowsVCL\CustomComponents\CustomComponentRegistrationUnit.pas',
-  CustomStringGridClass in 'Source\WindowsVCL\CustomComponents\CustomStringGridClass.pas',
-  Graphic2DComponent in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DComponent.pas',
-  Graphic2DFrame in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DFrame.pas' {CustomGraphic2D: TFrame},
-  Graphic2DTypes in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DTypes.pas',
-  Graphic2DListClass in 'Source\WindowsVCL\CustomComponents\Graphic2DUnits\Graphic2DListClass.pas',
-  GraphPlotsListClass in 'Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphPlotsListClass.pas',
-  GraphXYComponent in 'Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphXYComponent.pas',
-  GraphXYFrame in 'Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphXYFrame.pas' {CustomGraphXY: TFrame},
-  GraphXYTypes in 'Source\WindowsVCL\CustomComponents\GraphXYUnits\GraphXYTypes.pas';
+  CustomStringGridClass in 'Source\WindowsVCL\CustomComponents\CustomStringGridClass.pas';
 
 end.
